@@ -54,6 +54,11 @@
                     <input class="form-control col-sm-10 mb-3" type="text" name="contact_no" id="contact_no">
                 </div>
 
+                <div class="row col-12">
+                    <label for="address" class="col-sm-2 col-form-label">Address</label>
+                    <input class="form-control col-sm-10 mb-3" type="text" name="address" id="address">
+                </div>
+
 
                 <div class="row col-12">
                     <label for="civil_stat" class="col-sm-2 col-form-label">Civil Status</label>

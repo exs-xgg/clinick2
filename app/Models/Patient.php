@@ -19,7 +19,8 @@ class Patient extends Model
         'contact_no',
         'civil_stat',
         'occupation',
-        'hmo'
+        'hmo',
+        'address'
     ];
 
     public function visits(){

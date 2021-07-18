@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
-
+use App\Models\ActivityLog;
 class PatientController extends Controller
 {
     /**
@@ -12,9 +12,11 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $query = $request->input();
+        $results = Patient::orWhere('fname', 'like', '%' .  $request->search . '%')->orWhere('lname', 'like', '%' .  $request->search . '%')->get();
+        return $results;
     }
 
     /**
@@ -48,6 +50,10 @@ class PatientController extends Controller
     {
         $patient = Patient::whereId($id)->first();
         $visits = $patient->visits()->get();
+
+        $log = new ActivityLog();
+        $log->patient_id = $patient->id;
+        $log->save();
         return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits]);
     }
 
