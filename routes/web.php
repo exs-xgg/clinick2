@@ -13,5 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PatientController;
 
 Route::get('/',[ DashboardController::class, 'index']);
+
+Route::get('/create-patient',[ PatientController::class, 'create']);
+
+
+Route::resource('patient',PatientController::class);
