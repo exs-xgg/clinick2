@@ -14,7 +14,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('welcome')->with(['recent' => ActivityLog::whereBetween('created_at', [Carbon::today()->startOfDay(), Carbon::today()->endOfDay()])->get()]);
+        // return view('welcome')->with(['recent' => ActivityLog::whereBetween('created_at', [Carbon::today()->startOfDay(), Carbon::today()->endOfDay()])->get()]);
+        return view('welcome')->with(['recent' => ActivityLog::orderBy('created_at', 'desc')->limit(10)->get()]);
     }
 
     /**
