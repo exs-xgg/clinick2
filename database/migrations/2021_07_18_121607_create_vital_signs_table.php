@@ -17,6 +17,12 @@ class CreateVitalSignsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('visit_id');
+            $table->string('temp', 4)->nullable();
+            $table->string('weight', 4)->nullable();
+            $table->string('height', 4)->nullable();
+            $table->string('bp', 4)->nullable();
+            $table->string('rr', 4)->nullable();
+            $table->string('hr', 4)->nullable();
             $table->timestamps();
 
 
