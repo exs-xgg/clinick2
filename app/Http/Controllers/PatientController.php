@@ -19,7 +19,7 @@ class PatientController extends Controller
             ->orWhere('lname', 'like', '%' .  $request->search . '%')
             ->orWhere('mname', 'like', '%' .  $request->search . '%')
             ->orWhere('address', 'like', '%' .  $request->search . '%')
-            ->get();
+            ->limit(20)->get();
         return view('patient.search-patient')->with(['results' => $results]);
     }
 
