@@ -4,7 +4,7 @@
 <div class="container">
 
     @isset ($patient)
-        <div class="alert alert-success">Patient Saved</div>
+        <div class="alert alert-success">Patient Saved. <a href="/patient/{{$patient->id}}">View Saved Patient</a> </div>
     @endisset
     <div class="card">
         <div class="card-header">
