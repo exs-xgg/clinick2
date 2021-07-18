@@ -2,12 +2,16 @@
 @section('content')
 
 <div class="container">
+
+    @isset ($patient)
+        <div class="alert alert-success">Patient Saved</div>
+    @endisset
     <div class="card">
         <div class="card-header">
             Create New Patient
         </div>
         <div class="card-body ">
-        <form action="/patient" method="post" autocomplete="off">
+        <form action="/patient" method="post" autocomplete="off" autocapitalize="on">
             <div class="form-group row">
                 @csrf
                 <div class="row col-12">
@@ -27,7 +31,7 @@
 
                 <div class="row col-12">
                     <label for="birthdate" class="col-sm-2 col-form-label">Birthdate</label>
-                    <input class="form-control col-sm-10 mb-3" type="text" name="birthdate" id="birthdate">
+                    <input class="form-control col-sm-10 mb-3" type="text" name="birthdate" id="birthdate" placeholder="mm/dd/yyyy">
                 </div>
 
                 <div class="row col-12">
@@ -54,7 +58,7 @@
                 <div class="row col-12">
                     <label for="civil_stat" class="col-sm-2 col-form-label">Civil Status</label>
                     <select name="civil_stat" id="civil_stat" class=" col-sm-4 mb-3">
-                        <option value="S" selected>S</option>
+                        <option value="S" selected>Single</option>
                         <option value="M">Married</option>
                         <option value="C">Child</option>
                         <option value="W">Widow/er</option>

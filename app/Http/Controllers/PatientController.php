@@ -35,7 +35,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('patient.create-patient')->with(['patient' => Patient::create($request->only((new Patient)->getFillable()))]);
     }
 
     /**
