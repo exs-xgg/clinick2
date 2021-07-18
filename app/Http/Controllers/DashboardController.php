@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use DB;
 use App\Models\ActivityLog;
 class DashboardController extends Controller
 {
@@ -14,8 +15,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // return view('welcome')->with(['recent' => ActivityLog::whereBetween('created_at', [Carbon::today()->startOfDay(), Carbon::today()->endOfDay()])->get()]);
-        return view('welcome')->with(['recent' => ActivityLog::orderBy('created_at', 'desc')->limit(10)->get()]);
+        $recent = ActivityLog::select(DB::raw('patients.*'), 'activity_logs.created_at')->join('patients', 'patients.id','=','activity_logs.id')->orderBy('activity_logs.created_at', 'desc')->limit(10)->get();
+        return view('welcome')->with(['recent' => $recent]);
     }
 
     /**

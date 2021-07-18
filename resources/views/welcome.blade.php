@@ -3,11 +3,11 @@
 
 <div class="container">
     <div class="card">
-        <div class="card-header">Recently Visited</div>
+        <div class="card-header">Recently Opened</div>
         <div class="card-body">
-            @foreach ($recent ?? '' as $r)
+            @foreach ($recent ?? '' as $patient)
 
-                <a href="#">{{ $r->lname . ' ' . $r->fname . ( $r->mname ? ' ' . $mname : '')  }}</a>(<span>12-21-2021 9:43 AM, 12 hours ago</span>)
+                <a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a> (<span>{{Carbon\Carbon::parse($patient->created_at)->toRfc822String()}}</a>, {{Carbon\Carbon::parse($patient->created_at)->diffForHumans()}}</span>) <br>
 
             @endforeach
         </div>
