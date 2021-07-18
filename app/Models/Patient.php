@@ -21,4 +21,8 @@ class Patient extends Model
         'occupation',
         'hmo'
     ];
+
+    public function visits(){
+        return $this->hasMany(Visits::class);
+    }
 }

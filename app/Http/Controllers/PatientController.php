@@ -46,7 +46,9 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        return Patient::whereId($id)->get();
+        $patient = Patient::whereId($id)->first();
+        $visits = $patient->visits()->get();
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits]);
     }
 
     /**
@@ -55,9 +57,10 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit(Patient $patient, Request $request, $id)
     {
-        //
+
+        return view('patient.patient')->with(['patient' => Patient::update($request->only((new Patient)->getFillable()))->whereId($id)]);
     }
 
     /**
