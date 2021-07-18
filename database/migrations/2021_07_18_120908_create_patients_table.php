@@ -24,6 +24,7 @@ class CreatePatientsTable extends Migration
             $table->string('contact_no', 15)->nullable();
             $table->string('civil_stat', 100)->nullable();
             $table->string('occupation', 100)->nullable();
+            $table->string('hmo', 100)->nullable();
 
             $table->timestamps();
         });
