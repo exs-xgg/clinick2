@@ -3,7 +3,7 @@
 
         </div>
   </body>
-  <script src="js/app.js" type="text/javascript"></script>
+  <script src="/js/app.js" type="text/javascript"></script>
   <script>
     $('form').on('keyup keypress', function(e) {
       var keyCode = e.keyCode || e.which;

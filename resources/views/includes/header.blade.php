@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Clinick Web</title>
-        <link href="css/app.css" rel="stylesheet">
+        <link href="/css/app.css" rel="stylesheet">
     </head>
     <body class="body">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
