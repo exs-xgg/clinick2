@@ -12,12 +12,12 @@
                 @csrf
                 <div class="row col-12">
                     <label for="lname" class="col-sm-2 col-form-label">Last Name</label>
-                    <input class="form-control col-sm-10 mb-3" type="text" name="lname" id="lname">
+                    <input class="form-control col-sm-10 mb-3" type="text" name="lname" id="lname" required>
                 </div>
 
                 <div class="row col-12">
                     <label for="fname" class="col-sm-2 col-form-label">First Name</label>
-                    <input class="form-control col-sm-10 mb-3" type="text" name="fname" id="fname">
+                    <input class="form-control col-sm-10 mb-3" type="text" name="fname" id="fname" required>
                 </div>
 
                 <div class="row col-12">
@@ -38,7 +38,7 @@
 
                 <div class="row col-12">
                     <label for="sex" class="col-sm-2 col-form-label">Gender</label>
-                    <select name="sex" id="sex" class=" col-sm-4 mb-3">
+                    <select name="sex" id="sex" class=" col-sm-4 mb-3" required>
                         <option value="na" selected>NA</option>
                         <option value="m">Male</option>
                         <option value="f">Female</option>
