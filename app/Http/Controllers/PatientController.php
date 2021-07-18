@@ -15,8 +15,12 @@ class PatientController extends Controller
     public function index(Request $request)
     {
         // $query = $request->input();
-        $results = Patient::orWhere('fname', 'like', '%' .  $request->search . '%')->orWhere('lname', 'like', '%' .  $request->search . '%')->get();
-        return $results;
+        $results = Patient::orWhere('fname', 'like', '%' .  $request->search . '%')
+            ->orWhere('lname', 'like', '%' .  $request->search . '%')
+            ->orWhere('mname', 'like', '%' .  $request->search . '%')
+            ->orWhere('address', 'like', '%' .  $request->search . '%')
+            ->get();
+        return view('patient.search-patient')->with(['results' => $results]);
     }
 
     /**

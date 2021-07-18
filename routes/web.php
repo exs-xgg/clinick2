@@ -16,10 +16,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 
 Route::get('/',[ DashboardController::class, 'index']);
-Route::get('/search',function(){
-    return view('patient.search-patient');
-});
-Route::post('/search',[ PatientController::class, 'index']);
+Route::get('/search',[ PatientController::class, 'index']);
 
 Route::get('/create-patient',[ PatientController::class, 'create']);
 
