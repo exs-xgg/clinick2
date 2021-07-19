@@ -73,7 +73,10 @@ class VisitsController extends Controller
      */
     public function update(Request $request, Visit $visits)
     {
-        //
+
+        $result = Visit::where('id', $request->id)->update($request->only((new Visit)->getFillable()));
+
+        return redirect('/visit/' . $request->id)->with('success','Record updated successfully!');
     }
 
     /**
