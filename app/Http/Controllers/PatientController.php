@@ -80,9 +80,12 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patient $patient, $id)
+    public function update(Request $request, Patient $patient)
     {
-        //
+
+        $result = Patient::where('id', $request->id)->update($request->only((new Patient)->getFillable()));
+
+        return redirect('/patient/' . $request->id)->with('success','Record updated successfully!');
     }
 
     /**
