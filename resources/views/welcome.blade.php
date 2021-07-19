@@ -7,7 +7,7 @@
         <div class="card-body">
             @foreach ($recent ?? '' as $patient)
 
-                <a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a> (<span>{{Carbon\Carbon::parse($patient->created_at)->toRfc822String()}}</a>, {{Carbon\Carbon::parse($patient->created_at)->diffForHumans()}}</span>) <br>
+                <a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a> (<span>{{Carbon\Carbon::parse($patient->created_at)->format("m-d-Y a")}}</a>, {{Carbon\Carbon::parse($patient->created_at)->diffForHumans()}}</span>) <br>
 
             @endforeach
         </div>
