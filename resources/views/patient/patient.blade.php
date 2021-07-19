@@ -43,7 +43,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
+                                    <form action="/visit" method="post">
                                         @csrf
                                         <input type="hidden" name="patient_id" value="{{$patient->id}}">
                                         <div class="form-group">

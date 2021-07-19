@@ -35,7 +35,8 @@ class VisitsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $visit = Visit::create($request->only((new Visit)->getFillable()));
+        return redirect('/visit/' . $visit->id);
     }
 
     /**
@@ -44,9 +45,9 @@ class VisitsController extends Controller
      * @param  \App\Models\Visits  $visits
      * @return \Illuminate\Http\Response
      */
-    public function show(Visits $visits)
+    public function show(Visits $visits, $id)
     {
-        //
+        return view('patient.visit')->with(['visit' => Visit::id($id)]);
     }
 
     /**
