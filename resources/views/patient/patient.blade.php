@@ -30,7 +30,47 @@
                 <tr>
                     <th class="col-2">Visits</th>
                     <td class="col-10">
-                        <button class="btn btn-success mb-3">New Visit</button>
+                        <button class="btn btn-success mb-3"  data-toggle="modal" data-target=".bd-example-modal-lg">New Record</button>
+
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        @csrf
+                                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                        <div class="form-group">
+                                          <label for="history" class="col-form-label">History</label>
+                                          <textarea class="form-control" id="history" name="history" maxlength="250"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="symptoms" class="col-form-label">Symptoms</label>
+                                          <textarea class="form-control" id="symptoms" name="symptoms" maxlength="250"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="diagnosis" class="col-form-label">Diagnosis</label>
+                                          <textarea class="form-control" id="diagnosis" name="diagnosis" maxlength="250"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="prescription" class="col-form-label">Prescription</label>
+                                          <textarea class="form-control" id="prescription" name="prescription" maxlength="250"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Send message</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                         <ul class="list-group">
                             @foreach ($visits as $v)
                             <li class="list-group-item"><a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->created_at)->toRfc822String()}}</a>, {{Carbon\Carbon::parse($v->created_at)->diffForHumans()}}</li>
@@ -42,6 +82,7 @@
         </div>
     </div>
 </div>
+
 
 
 @stop
