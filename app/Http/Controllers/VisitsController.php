@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Visit;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class VisitsController extends Controller
@@ -45,9 +46,11 @@ class VisitsController extends Controller
      * @param  \App\Models\Visits  $visits
      * @return \Illuminate\Http\Response
      */
-    public function show(Visits $visits, $id)
+    public function show(Visit $visits, $id)
     {
-        return view('patient.visit')->with(['visit' => Visit::id($id)]);
+        $visit = Visit::whereId($id)->first();
+        $patient_info = Patient::whereId($visit->patient_id)->first();
+        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info]);
     }
 
     /**
@@ -56,7 +59,7 @@ class VisitsController extends Controller
      * @param  \App\Models\Visits  $visits
      * @return \Illuminate\Http\Response
      */
-    public function edit(Visits $visits)
+    public function edit(Visit $visits)
     {
         //
     }
@@ -68,7 +71,7 @@ class VisitsController extends Controller
      * @param  \App\Models\Visits  $visits
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Visits $visits)
+    public function update(Request $request, Visit $visits)
     {
         //
     }
@@ -79,7 +82,7 @@ class VisitsController extends Controller
      * @param  \App\Models\Visits  $visits
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Visits $visits)
+    public function destroy(Visit $visits)
     {
         //
     }

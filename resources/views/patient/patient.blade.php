@@ -62,11 +62,11 @@
                                           <label for="prescription" class="col-form-label">Prescription</label>
                                           <textarea class="form-control" id="prescription" name="prescription" maxlength="250"></textarea>
                                         </div>
+                                        <button type="submit" class="btn btn-success">Save Record</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Send message</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                             </div>
