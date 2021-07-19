@@ -19,7 +19,7 @@
                         <td>{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</td>
                         <td>{{Str::upper($patient->address)}}</td>
                         <td>{{$patient->birthdate ?? ''}} {{ $patient->age ? '(' . $patient->age . ')' : ''}}</td>
-                        <td><a href="/patient/{{$patient->id}}" class="btn btn-success mr-2">Open</a><a target="blank" href="/patient/{{$patient->id}}" class="btn btn-info">Open in New Tab</a></td>
+                        <td><a href="/patient/{{$patient->id}}" class="btn btn-success mr-2">Open</a><a target="blank" href="/patient/{{$patient->id}}" class="btn btn-primary">Open in New Tab</a></td>
                     </tr>
                     @endforeach
                 </tbody>

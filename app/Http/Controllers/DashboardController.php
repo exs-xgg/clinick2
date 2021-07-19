@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $recent = ActivityLog::select('patients.fname', 'patients.lname', 'patients.mname', 'activity_logs.created_at')
+        $recent = ActivityLog::select('patients.id', 'patients.fname', 'patients.lname', 'patients.mname', 'activity_logs.created_at')
             ->join('patients', 'patients.id','=','activity_logs.patient_id')
             ->orderBy('activity_logs.created_at', 'desc')->limit(10)->get();
         return view('welcome')->with(['recent' => $recent]);
