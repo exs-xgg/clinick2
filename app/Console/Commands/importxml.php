@@ -44,8 +44,10 @@ class importxml extends Command
 
 
         $infoxml=simplexml_load_file("InfoDB.xml") or die("Error: Cannot create object");
-        $records = $infoxml->xpath('//InfoDB/Username[.="ABAD, ANTHONY"]', );
-        dd($records);
+        $rs = $infoxml->xpath('//InfoDB/Username[.="ABAD, ANTHONY"]');
+        foreach ($rs as $key) {
+            $records[] = (($rs[0]??null)->xpath("parent::*"))[0]->ID->__toString();
+        }
         $count = 0;
         foreach ($dataxml as $key) {
             try {
@@ -55,6 +57,8 @@ class importxml extends Command
                 $records = $infoxml->xpath('/InfoDB/Username[.="TIMBANG, EMMANUEL"]');
             }finally{
                 echo $count . ' = '. $key->ID->__toString() . PHP_EOL;
+
+                array_walk($records, array($this, 'transform_date'));
                 $x[] = [
                     'id' => $key->ID->__toString(),
                     'lname' => $key->Name1->__toString(),
@@ -72,5 +76,11 @@ class importxml extends Command
 
         }
         dd($x[6350]);
+    }
+
+    public function transform_date(&$item1, $key){
+        $item1 = str_replace('/','+',$item1);
+        $item1 = str_replace(':','',$item1);
+        $item1 = str_replace(' ','',$item1);
     }
 }
