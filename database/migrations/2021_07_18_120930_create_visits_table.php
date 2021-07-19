@@ -18,7 +18,7 @@ class CreateVisitsTable extends Migration
             $table->unsignedBigInteger('patient_id');
             $table->string('history')->nullable();
             $table->string('symptoms')->nullable();
-            $table->string('diagnosis')->nullable();
+            $table->string('diagnosis',1000)->nullable();
             $table->string('prescription')->nullable();
             $table->timestamps();
 
