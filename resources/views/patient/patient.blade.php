@@ -76,7 +76,7 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 @foreach ($visits as $v)
-                                <li class="list-group-item"><a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->created_at)->format("m-d-Y H:i a")}}</a>, {{Carbon\Carbon::parse($v->created_at)->diffForHumans()}}</li>
+                                <li class="list-group-item"><a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->format("m-d-Y H:i a")}}</a>, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
                                 @endforeach
                             </ul>
                         </div>

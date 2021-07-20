@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 use App\Models\Patient;
+use App\Models\Visit;
 use Illuminate\Console\Command;
 use Exception;
 use Carbon\Carbon;
@@ -63,8 +64,8 @@ class importxml extends Command
                         if($info){
                             $parent = (($info[0]??null)->xpath("parent::*"))[0];
 
-                            $reps[] = ['created_at' =>($a),
-                             'updated_at' =>($a),
+                            $reps[] = ['alias_created_at' =>$this->toDate($a),
+                             'updated_at' =>$this->toDate($a),
                              'symptoms' => $parent->Proc->__toString()??null,
                              'diagnosis' => $parent->Diagnosis->__toString()??null,
                              'prescription' => $parent->Meds->__toString()??null,
@@ -81,7 +82,7 @@ class importxml extends Command
                 foreach ($recs as $k) {
                     $parent = (($k[0]??null)->xpath("parent::*"))[0];
                     $reps[] = [
-                        'created_at' => $this->toDate($parent->ID->__toString()),
+                        'alias_created_at' => $this->toDate($parent->ID->__toString()),
                         'updated_at' => $this->toDate($parent->ID->__toString()),
                         'symptoms' => $parent->Proc->__toString(),
                         'diagnosis' => $parent->Diagnosis->__toString(),
@@ -120,18 +121,19 @@ class importxml extends Command
 
             $patient->save();
 
+            foreach ($reps as $z) {
+                $z['patient_id'] = $patient->id;
+                $visit = new Visit();
+                $visit->fill($z);
+                $visit->save();
+            }
+
+
             $this->show_status($count, $total);
             $count++;
             // break;
         }
 
-        $fp = fopen('patients.txt', 'w');
-        fwrite($fp, json_encode($x, false));
-        fclose($fp);
-
-        $fp = fopen('out.tx', 'w');
-        fwrite($fp, json_encode($out, false));
-        fclose($fp);
 
         echo 'DONE';
     }
@@ -143,15 +145,15 @@ class importxml extends Command
         return $item1;
     }
     public function toDate($date){
-        $date = explode('+',$date);
+        if(str_contains($date, 'old')){
+            return Carbon::parse('2016-01-01')->toString();
+        }
         try {
+            $date = explode('+',$date);
             $year = substr($date[2],0,4);
-            $timeH = explode('',substr($date[2],4,2));
-            $timeM = explode('',substr($date[2],6,2));
-            $timeA = explode('',substr($date[2],10,2));
-            return Carbon::parse($year . '-' . $date[0] . '-' . $date[1] . ' ' . $timeH[0] . ':' . $timeM[0] . ' ' . $timeA[0])->toString();
+            return Carbon::parse($year . '-' . $date[0] . '-' . $date[1] )->toString();
         } catch (Exception $e) {
-            return Carbon::parse('')->toString();
+            return Carbon::parse('2016-01-01')->toString();
         }
 
     }

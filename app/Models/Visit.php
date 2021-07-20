@@ -14,6 +14,7 @@ class Visit extends Model
         'history',
         'symptoms',
         'diagnosis',
-        'prescription'
+        'prescription',
+        'alias_created_at'
     ];
 }
