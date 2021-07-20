@@ -41,14 +41,13 @@ class importxml extends Command
         $x = [];
 
         $dataxml=simplexml_load_file("DataDB.xml") or die("Error: Cannot create object");
-
+        $total = $dataxml->DataDB->count();
 
         $infoxml=simplexml_load_file("InfoDB.xml") or die("Error: Cannot create object");
-        $count = 0;
+        $count = 1;
         $out = [];
+        $images = [];
         foreach ($dataxml as $key) {
-
-            echo $count . ' = '. $key->ID->__toString() . PHP_EOL;
 
             try {
                 $myfile = fopen("Data Library/" . $key->ID->__toString() . "/user-resx.CLINICK", "r") or die("Unable to open file!");
@@ -71,7 +70,6 @@ class importxml extends Command
                              'prescription' => $parent->Meds->__toString()??null,
                              'history' => $parent->Notes->__toString()??null];
                         }else{
-                            echo "xxxxxxxxxxxxxxxxxxxxxx $a" . PHP_EOL;
                             $out[] = $a;
                         }
                     }
@@ -93,26 +91,44 @@ class importxml extends Command
                 }
 
 
-            }finally{
-
-                $f = [
-                    'id' => $key->ID->__toString(),
-                    'lname' => $key->Name1->__toString(),
-                    'birthdate' => $key->Age->__toString(),
-                    'sex' => $this->isDash($key->Sex->__toString()),
-                    'civil_stat' =>  $this->isDash($key->CivilStat->__toString(),1),
-                    'contact_no' =>  $this->isDash($key->Contact->__toString()),
-                    'occupation' => $key->Occuption->__toString(),
-                    'hmo' => $key->HMO->__toString(),
-                    'address' => $key->Address->__toString(),
-                    'visit' => $reps
-                ];
-                $x[] = $f;
             }
-            $count++;
 
+            try {
+
+                $imagefile = fopen("Data Library/" . $key->ID->__toString() . "/image-resx.CLINICK", "r") or die("Unable to open file!");
+                $imagestream = fread($imagefile,filesize("Data Library/" . $key->ID->__toString() . "/image-resx.CLINICK"));
+                $images[] =  explode("\r\n",$imagestream);
+            } catch (Exception $e) {
+                //throw $th;
+            }
+            $f = [
+                'id' => $key->ID->__toString(),
+                'lname' => $key->Name1->__toString(),
+                'birthdate' => $key->Age->__toString(),
+                'sex' => $this->isDash($key->Sex->__toString()),
+                'civil_stat' =>  $this->isDash($key->CivilStat->__toString(),1),
+                'contact_no' =>  $this->isDash($key->Contact->__toString()),
+                'occupation' => $key->Occuption->__toString(),
+                'hmo' => $key->HMO->__toString(),
+                'address' => $key->Address->__toString(),
+                'visit' => $reps,
+                'images' => $images
+            ];
+            $x[] = $f;
+            $this->show_status($count, $total);
+            $count++;
+            // break;
         }
-        dd($out);
+
+        $fp = fopen('patients.txt', 'w');
+        fwrite($fp, json_encode($x, false));
+        fclose($fp);
+
+        $fp = fopen('out.tx', 'w');
+        fwrite($fp, json_encode($out, false));
+        fclose($fp);
+
+        echo 'DONE';
     }
 
     public function transform_date($item1){
@@ -146,5 +162,50 @@ class importxml extends Command
                 return ($str[0] ?? '');
             }
         }
+    }
+    function show_status($done, $total, $size=30) {
+
+        static $start_time;
+
+        // if we go over our bound, just ignore it
+        if($done > $total) return;
+
+        if(empty($start_time)) $start_time=time();
+        $now = time();
+
+        $perc=(double)($done/$total);
+
+        $bar=floor($perc*$size);
+
+        $status_bar="\r[";
+        $status_bar.=str_repeat("=", $bar);
+        if($bar<$size){
+            $status_bar.=">";
+            $status_bar.=str_repeat(" ", $size-$bar);
+        } else {
+            $status_bar.="=";
+        }
+
+        $disp=number_format($perc*100, 0);
+
+        $status_bar.="] $disp%  $done/$total";
+
+        $rate = ($now-$start_time)/$done;
+        $left = $total - $done;
+        $eta = round($rate * $left, 2);
+
+        $elapsed = $now - $start_time;
+
+        $status_bar.= " remaining: ".number_format($eta)." sec.  elapsed: ".number_format($elapsed)." sec.";
+
+        echo "$status_bar  ";
+
+        flush();
+
+        // when done, send a newline
+        if($done == $total) {
+            echo "\n";
+        }
+
     }
 }
