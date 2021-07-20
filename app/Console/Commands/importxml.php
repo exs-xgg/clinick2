@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Console\Commands;
-
+use App\Models\Patient;
 use Illuminate\Console\Command;
 use Exception;
 use Carbon\Carbon;
@@ -102,8 +102,9 @@ class importxml extends Command
                 //throw $th;
             }
             $f = [
-                'id' => $key->ID->__toString(),
+                'temp_id' => $key->ID->__toString(),
                 'lname' => $key->Name1->__toString(),
+                'fname' => '',
                 'birthdate' => $key->Age->__toString(),
                 'sex' => $this->isDash($key->Sex->__toString()),
                 'civil_stat' =>  $this->isDash($key->CivilStat->__toString(),1),
@@ -111,10 +112,14 @@ class importxml extends Command
                 'occupation' => $key->Occuption->__toString(),
                 'hmo' => $key->HMO->__toString(),
                 'address' => $key->Address->__toString(),
-                'visit' => $reps,
-                'images' => $images
+                // 'visit' => $reps,
+                // 'images' => $images
             ];
-            $x[] = $f;
+            $patient = new Patient();
+            $patient->fill($f);
+
+            $patient->save();
+
             $this->show_status($count, $total);
             $count++;
             // break;

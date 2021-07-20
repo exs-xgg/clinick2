@@ -20,7 +20,8 @@ class Patient extends Model
         'civil_stat',
         'occupation',
         'hmo',
-        'address'
+        'address',
+        'temp_id'
     ];
 
     public function visits(){
