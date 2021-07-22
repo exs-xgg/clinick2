@@ -15,7 +15,7 @@
 
     @endif
     <div class="card">
-        <div class="card-header">Patient Information</div>
+        <div class="card-header"><i class="fa fa-user mr-2"></i> Patient Information</div>
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
@@ -39,9 +39,9 @@
                             <tr>
                                 <th class="col-2">Gender</th><td class="col-10">
                                     <select name="sex" id="sex" class=" col-sm-4 mb-3">
-                                        <option value="na" {{($patient->sex == 'na' ? 'selected' : '')}}>NA</option>
-                                        <option value="m" {{($patient->sex == 'm' ? 'selected' : '')}}>Male</option>
-                                        <option value="f" {{($patient->sex == 'f' ? 'selected' : '')}}>Female</option>
+                                        <option value="na" {{(Str::lower($patient->sex) == 'na' ? 'selected' : '')}}>NA</option>
+                                        <option value="m" {{(Str::lower($patient->sex) == 'm' ? 'selected' : '')}}>Male</option>
+                                        <option value="f" {{(Str::lower($patient->sex) == 'f' ? 'selected' : '')}}>Female</option>
                                     </select></td>
                             </tr>
                             <tr>
