@@ -116,6 +116,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 mb-2">
+                        <div class="card bg-info">
+                            <div class="card-header text-white">Photos</div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="input-group col-6">
+                                            <div class="custom-file">
+                                                <input type="file" id="photo" class="form-control" name = "profile_pic" accept="image/png,image/jpg,image/jpeg">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Take Photo</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            
+                        </div>
+                    </div>
 
 
                 </div>
@@ -125,5 +149,125 @@
     </form>
 </div>
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="camera">
+            <video id="video">Video stream not available.</video>
+            <button type="button" id="startbutton" class="btn btn-success" >Take photo</button>
+        </div>
+        <canvas id="canvas">
+        </canvas>
+        <div class="output">
+            <img id="photo">
+        </div>
+    </div>
+  </div>
+</div>
 
+
+<script>
+  (function() {
+      // The width and height of the captured photo. We will set the
+      // width to the value defined here, but the height will be
+      // calculated based on the aspect ratio of the input stream.
+
+      var width = 770;    // We will scale the photo width to this
+      var height = 900;   // This will be computed based on the input stream
+
+      // |streaming| indicates whether or not we're currently streaming
+      // video from the camera. Obviously, we start at false.
+
+      var streaming = false;
+
+      // The various HTML elements we need to configure or control. These
+      // will be set by the startup() function.
+
+      var video = null;
+      var canvas = null;
+      var photo = null;
+      var startbutton = null;
+
+      function startup() {
+        video = document.getElementById('video');
+        canvas = document.getElementById('canvas');
+        photo = document.getElementById('photo');
+        startbutton = document.getElementById('startbutton');
+
+        navigator.mediaDevices.getUserMedia({video: true, audio: false})
+        .then(function(stream) {
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch(function(err) {
+          console.log("An error occurred: " + err);
+        });
+
+        video.addEventListener('canplay', function(ev){
+          if (!streaming) {
+            height = video.videoHeight / (video.videoWidth/width);
+
+            // Firefox currently has a bug where the height can't be read from
+            // the video, so we will make assumptions if this happens.
+
+            if (isNaN(height)) {
+              height = width / (4/3);
+            }
+
+            video.setAttribute('width', 340);
+            video.setAttribute('height', 300);
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            streaming = true;
+          }
+        }, false);
+
+        startbutton.addEventListener('click', function(ev){
+          takepicture();
+          ev.preventDefault();
+        }, false);
+
+        clearphoto();
+      }
+
+      // Fill the photo with an indication that none has been
+      // captured.
+
+      function clearphoto() {
+        var context = canvas.getContext('2d');
+        context.fillStyle = "#AAA";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+        var data = canvas.toDataURL('image/png');
+        photo.setAttribute('src', data);
+      }
+
+      // Capture a photo by fetching the current contents of the video
+      // and drawing it into a canvas, then converting that to a PNG
+      // format data URL. By drawing it on an offscreen canvas and then
+      // drawing that to the screen, we can change its size and/or apply
+      // other changes before drawing it.
+
+      function takepicture() {
+        var context = canvas.getContext('2d');
+        if (width && height) {
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(video, 0, 0, width, height);
+
+          var data = canvas.toDataURL('image/ ');
+          photo.setAttribute('src', data);
+        } else {
+          clearphoto();
+        }
+      }
+
+      // Set up our event listener to run the startup process
+      // once loading is complete.
+      window.addEventListener('load', startup, false);
+    })(); 
+
+
+
+</script>
 @stop
