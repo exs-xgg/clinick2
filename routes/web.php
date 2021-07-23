@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VisitsController;
+use App\Http\Controllers\ImageController;
 
 Route::get('/',[ DashboardController::class, 'index']);
 Route::get('/search',[ PatientController::class, 'index']);
@@ -24,3 +25,4 @@ Route::get('/create-patient',[ PatientController::class, 'create']);
 
 Route::resource('patient',PatientController::class);
 Route::resource('visit',VisitsController::class);
+Route::resource('image',ImageController::class);

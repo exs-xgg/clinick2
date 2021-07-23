@@ -35,7 +35,17 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            
+            $image = new Image;
+            $image->fill($request->only($image->getFillable()));
+            $image->save();
+
+            return back()->with('success','Record updated successfully!');
+        } catch (\Throwable $th) {
+            return back()->with('error','SOmething went wrong');
+        }
+
     }
 
     /**
@@ -44,9 +54,9 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show(Image $image, $id)
     {
-        //
+        return Image::wherePatientId($id)->first();
     }
 
     /**
