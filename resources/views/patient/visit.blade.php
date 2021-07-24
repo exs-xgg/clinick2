@@ -116,53 +116,61 @@
                             </div>
                         </div>
                     </div>
+
+    </form>
                     <div class="col-12 mb-2">
                         <div class="card bg-info">
                             <div class="card-header text-white">Photos</div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="input-group col-6">
-                                            <div class="custom-file">
-                                                <input type="file" id="photo" class="form-control" name = "profile_pic" accept="image/png,image/jpg,image/jpeg">
-                                                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
-                                            </div>
-                                        </div>
+                                        <img src="{{asset('storage/public/images/1627138928.png')}}" alt="">
+                                    </div>
+                                    <div class="row">
                                         <div class="col-6">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Take Photo</button>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger">Take Photo</button>
+                                        </div>
+
+
+                                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-content container">
+                                                <div class="row">
+                                                    <div class="col-6 mx-auto">
+                                                        <video id="video">Video stream not available.</video>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-5">
+                                                    <div class="col-2 mx-auto">
+                                                        <button type="button" id="startbutton" class="btn btn-success" >Take photo</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-2">
+                                                    <div class="col-12 mx-auto ">
+                                                        <canvas class="d-none" id="canvas">
+                                                        </canvas>
+                                                        <div class="output">
+                                                            <img id="photo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-5">
+                                                    <div class="col-12">
+                                                        <button class="btn btn-success col-12" id="saveImage" type="button">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-
-
-                            
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-
-    </form>
-</div>
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-        <div class="camera">
-            <video id="video">Video stream not available.</video>
-            <button type="button" id="startbutton" class="btn btn-success" >Take photo</button>
-        </div>
-        <canvas id="canvas">
-        </canvas>
-        <div class="output">
-            <img id="photo">
-        </div>
-    </div>
-  </div>
 </div>
 
 
@@ -257,15 +265,37 @@
 
           var data = canvas.toDataURL('image/ ');
           photo.setAttribute('src', data);
+
         } else {
           clearphoto();
         }
       }
 
+      function saveImage(){
+        var fd = new FormData();
+        var data = canvas.toDataURL('image/ ');
+
+        fd.append('asset_path', data);
+        fd.append('patient_id', {{$patient->id}});
+
+        fetch('/image', {
+                method:"POST",
+                headers:{
+                    "Accept": "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-Token": $('input[name="_token"]').val()
+                },
+                credentials: "same-origin",
+                body:fd
+            })
+                // .then(response => console.log(response.text()))
+      }
+
       // Set up our event listener to run the startup process
       // once loading is complete.
-      window.addEventListener('load', startup, false);
-    })(); 
+      document.getElementById('camTrigger').addEventListener('click', startup, false);
+      document.getElementById('saveImage').addEventListener('click', saveImage, false);
+    })();
 
 
 

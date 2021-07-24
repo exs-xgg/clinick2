@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Storage;
 class ImageController extends Controller
 {
     /**
@@ -35,16 +36,19 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            
+            DB::beginTransaction();
+            $imageName = time().'.png';
+            $image = base64_decode(substr($request->asset_path, strpos($request->asset_path, ",")+1));
+
+            $data = explode(',', $request['asset_path']);
+            Storage::disk('local')->put("/public/images/".$imageName, base64_decode($data[1]));
+
+            $request['asset_path'] = "/images/" .  $imageName;
             $image = new Image;
             $image->fill($request->only($image->getFillable()));
             $image->save();
-
-            return back()->with('success','Record updated successfully!');
-        } catch (\Throwable $th) {
-            return back()->with('error','SOmething went wrong');
-        }
+            DB::commit();
+            return $image;
 
     }
 
