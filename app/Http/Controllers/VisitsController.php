@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use App\Models\Patient;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class VisitsController extends Controller
@@ -50,7 +51,8 @@ class VisitsController extends Controller
     {
         $visit = Visit::whereId($id)->first();
         $patient_info = Patient::whereId($visit->patient_id)->first();
-        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info]);
+        $images = Image::wherePatientId($visit->patient_id)->get();
+        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images]);
     }
 
     /**

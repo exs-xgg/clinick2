@@ -123,15 +123,23 @@
                             <div class="card-header text-white">Photos</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <div class="row">
-                                        <img src="{{asset('storage/public/images/1627138928.png')}}" alt="">
+                                    <div class="row mb-3">
+
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger"><i class="fa fa-camera"></i> New Photo</button>
+                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-6">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger">Take Photo</button>
+                                        @foreach ($images as $i)
+                                        <div class="card col-3 m-4">
+                                            <div class="card-header">{{$i->created_at}}</div>
+                                            <div class="card-body">
+                                                <a target="blank" href="{{asset('storage' . $i->asset_path)}}"><img class="img-visit" src="{{asset('storage' . $i->asset_path)}}" alt="" style=" max-width: 15vw; max-height: 15vh;"></a>
+                                            </div>
                                         </div>
-
-
+                                        @endforeach
+                                    </div>
+                                    <div class="row">
                                         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                             <div class="modal-content container">
@@ -156,7 +164,7 @@
                                                 </div>
                                                 <div class="row mb-5">
                                                     <div class="col-12">
-                                                        <button class="btn btn-success col-12" id="saveImage" type="button">Save</button>
+                                                        <button class="btn btn-success col-12" id="saveImage" type="button" data-dismiss="modal">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -176,20 +184,10 @@
 
 <script>
   (function() {
-      // The width and height of the captured photo. We will set the
-      // width to the value defined here, but the height will be
-      // calculated based on the aspect ratio of the input stream.
 
       var width = 770;    // We will scale the photo width to this
-      var height = 900;   // This will be computed based on the input stream
-
-      // |streaming| indicates whether or not we're currently streaming
-      // video from the camera. Obviously, we start at false.
-
+      var height = 900;   // This will be computed based on the input stre
       var streaming = false;
-
-      // The various HTML elements we need to configure or control. These
-      // will be set by the startup() function.
 
       var video = null;
       var canvas = null;
@@ -238,8 +236,6 @@
         clearphoto();
       }
 
-      // Fill the photo with an indication that none has been
-      // captured.
 
       function clearphoto() {
         var context = canvas.getContext('2d');
@@ -249,12 +245,6 @@
         var data = canvas.toDataURL('image/png');
         photo.setAttribute('src', data);
       }
-
-      // Capture a photo by fetching the current contents of the video
-      // and drawing it into a canvas, then converting that to a PNG
-      // format data URL. By drawing it on an offscreen canvas and then
-      // drawing that to the screen, we can change its size and/or apply
-      // other changes before drawing it.
 
       function takepicture() {
         var context = canvas.getContext('2d');
@@ -287,6 +277,8 @@
                 },
                 credentials: "same-origin",
                 body:fd
+            }).then((response) => {
+                location.reload();
             })
                 // .then(response => console.log(response.text()))
       }
