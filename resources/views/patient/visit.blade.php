@@ -119,8 +119,8 @@
 
     </form>
                     <div class="col-12 mb-2">
-                        <div class="card bg-info">
-                            <div class="card-header text-white">Photos</div>
+                        <div class="card border-info">
+                            <div class="card-header text-white bg-info">Photos</div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="row mb-3">
