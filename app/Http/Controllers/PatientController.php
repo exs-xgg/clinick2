@@ -31,7 +31,7 @@ class PatientController extends Controller
             });
     }
 
-        return view('patient.search-patient')->with(['results' => $results->get()]);
+        return view('patient.search-patient')->with(['results' => $results->orderBy('lname', 'asc')->get()]);
     }
 
     /**
