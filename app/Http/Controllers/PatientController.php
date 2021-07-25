@@ -14,13 +14,24 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        // $query = $request->input();
-        $results = Patient::orWhere('fname', 'like', '%' .  $request->search . '%')
-            ->orWhere('lname', 'like', '%' .  $request->search . '%')
-            ->orWhere('mname', 'like', '%' .  $request->search . '%')
-            ->orWhere('address', 'like', '%' .  $request->search . '%')
-            ->limit(20)->get();
-        return view('patient.search-patient')->with(['results' => $results]);
+        $fields = [ 'lname', 'mname', 'fname', 'address'];
+
+        $filter = $request->input('search');
+        $filter = str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $filter);
+        $filter = explode(' ',$filter);
+
+
+        $results = Patient::select();
+
+        foreach ($filter as $bit) {
+            $results->where(function($query) use ($fields,$bit) {
+                foreach ($fields as $attribute) {
+                    $query->orWhere($attribute , 'LIKE','%' .$bit. '%');
+                }
+            });
+    }
+
+        return view('patient.search-patient')->with(['results' => $results->get()]);
     }
 
     /**
