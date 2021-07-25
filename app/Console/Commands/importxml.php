@@ -3,9 +3,12 @@
 namespace App\Console\Commands;
 use App\Models\Patient;
 use App\Models\Visit;
+use App\Models\Image;
 use Illuminate\Console\Command;
 use Exception;
 use Carbon\Carbon;
+use Storage;
+use Illuminate\Support\Str;
 class importxml extends Command
 {
     /**
@@ -95,6 +98,7 @@ class importxml extends Command
             }
 
             try {
+                $images = [];
 
                 $imagefile = fopen("Data Library/" . $key->ID->__toString() . "/image-resx.CLINICK", "r") or die("Unable to open file!");
                 $imagestream = fread($imagefile,filesize("Data Library/" . $key->ID->__toString() . "/image-resx.CLINICK"));
@@ -128,6 +132,25 @@ class importxml extends Command
                 $visit->save();
             }
 
+            foreach($images ?? [] as $img){
+                foreach($img as $i){
+
+                    try{
+
+                        if(!$i){ continue;}
+                        $imageName = (md5(microtime()) . Str::random(6)).'.png';
+                        copy("Data Library/Image Library/" . $i, "storage/app/public/images/" . $i . '.' . $imageName);
+
+                        $image = new Image;
+
+                        $image->asset_path = "/images/" .  $i . '.' .$imageName;
+                        $image->patient_id = $patient->id;
+                        $image->save();
+                    }catch(Exception $e){
+                        dd($i);
+                    }
+                }
+            }
 
             $this->show_status($count, $total);
             $count++;
