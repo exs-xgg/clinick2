@@ -8,6 +8,7 @@
             Results
         </div>
         <div class="card-body">
+            @if($results != [])
             <table class="table">
                 <thead>
                     <tr><th>Name</th><th>Address</th><th>Birthday</th><th></th></tr>
@@ -24,6 +25,10 @@
                     @endforeach
                 </tbody>
             </table>
+            @else
+            <button class="btn btn-success"><i class="fa fa-plus"></i> Add New Patient</button>
+            @endif
+
         </div>
     </div>
 
