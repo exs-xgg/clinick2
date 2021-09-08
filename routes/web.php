@@ -19,6 +19,9 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 
 
+Route::get('/login',function(){
+    return view('login');
+})->name('login');
 Route::post('login',[ LoginController::class, 'store']);
 Route::get('logout',[ LoginController::class, 'index']);
 
