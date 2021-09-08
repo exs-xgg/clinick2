@@ -16,16 +16,22 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VisitsController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LoginController;
+
+
+Route::post('login',[ LoginController::class, 'store']);
+Route::get('logout',[ LoginController::class, 'index']);
 
 Route::get('/',[ DashboardController::class, 'index']);
-Route::get('/welcome',function (){
-    return view('login');
+
+Route::middleware(['web','auth'])->group(function () {
+
+    Route::get('/search',[ PatientController::class, 'index']);
+
+    Route::get('/create-patient',[ PatientController::class, 'create']);
+
+
+    Route::resource('patient',PatientController::class);
+    Route::resource('visit',VisitsController::class);
+    Route::resource('image',ImageController::class);
 });
-Route::get('/search',[ PatientController::class, 'index']);
-
-Route::get('/create-patient',[ PatientController::class, 'create']);
-
-
-Route::resource('patient',PatientController::class);
-Route::resource('visit',VisitsController::class);
-Route::resource('image',ImageController::class);
