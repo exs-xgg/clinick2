@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
 use App\Models\ActivityLog;
+use Auth;
 class DashboardController extends Controller
 {
     /**
@@ -15,10 +16,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $recent = ActivityLog::select('patients.id', 'patients.fname', 'patients.lname', 'patients.mname', 'activity_logs.created_at')
+        if(Auth::check()){
+
+            $recent = ActivityLog::select('patients.id', 'patients.fname', 'patients.lname', 'patients.mname', 'activity_logs.created_at')
             ->join('patients', 'patients.id','=','activity_logs.patient_id')
             ->orderBy('activity_logs.created_at', 'desc')->limit(10)->get();
-        return view('welcome')->with(['recent' => $recent]);
+            return view('welcome')->with(['recent' => $recent]);
+        }else{
+
+            return view('login');
+        }
     }
 
     /**
