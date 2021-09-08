@@ -12,9 +12,9 @@
                 <form class="form-signin" action="/login" method="post">
                     @csrf
                     <label for="inputEmail" class="sr-only">Username</label>
-                    <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Username" required autofocus>
+                    <input type="text" id="inputEmail" class="form-control mb-3" placeholder="Username" required autofocus name="email">
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required>
+                    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" required name="password">
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                   </form>
             </div>
