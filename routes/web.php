@@ -18,6 +18,9 @@ use App\Http\Controllers\VisitsController;
 use App\Http\Controllers\ImageController;
 
 Route::get('/',[ DashboardController::class, 'index']);
+Route::get('/welcome',function (){
+    return view('login');
+});
 Route::get('/search',[ PatientController::class, 'index']);
 
 Route::get('/create-patient',[ PatientController::class, 'create']);
