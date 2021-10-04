@@ -41,7 +41,7 @@ class ImageController extends Controller
             $image = base64_decode(substr($request->asset_path, strpos($request->asset_path, ",")+1));
 
             $data = explode(',', $request['asset_path']);
-            Storage::disk('local')->put("/public/images/".$imageName, base64_decode($data[1]));
+            Storage::disk('minio')->put("/public/images/".$imageName, base64_decode($data[1]),'public');
 
             $request['asset_path'] = "/images/" .  $imageName;
             $image = new Image;

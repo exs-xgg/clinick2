@@ -6,7 +6,7 @@ use App\Models\Visit;
 use App\Models\Patient;
 use App\Models\Image;
 use Illuminate\Http\Request;
-
+use Storage;
 class VisitsController extends Controller
 {
     /**
