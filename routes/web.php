@@ -27,14 +27,14 @@ Route::get('logout',[ LoginController::class, 'index']);
 
 Route::get('/',[ DashboardController::class, 'index']);
 
+
+Route::get('/search',[ PatientController::class, 'index']);
+
+Route::get('/create-patient',[ PatientController::class, 'create']);
+
+
+Route::resource('patient',PatientController::class);
+Route::resource('visit',VisitsController::class);
+Route::resource('image',ImageController::class);
 Route::middleware([])->group(function () {
-
-    Route::get('/search',[ PatientController::class, 'index']);
-
-    Route::get('/create-patient',[ PatientController::class, 'create']);
-
-
-    Route::resource('patient',PatientController::class);
-    Route::resource('visit',VisitsController::class);
-    Route::resource('image',ImageController::class);
 });
