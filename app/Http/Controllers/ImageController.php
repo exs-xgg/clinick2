@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use File;
 use Storage;
 class ImageController extends Controller
 {
@@ -36,18 +37,32 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-            DB::beginTransaction();
-            $imageName = time().'.png';
-            $image = base64_decode(substr($request->asset_path, strpos($request->asset_path, ",")+1));
+            // DB::beginTransaction();
 
-            $data = explode(',', $request['asset_path']);
-            Storage::disk('minio')->put("/public/images/".$imageName, base64_decode($data[1]),'public');
-
-            $request['asset_path'] = "/images/" .  $imageName;
             $image = new Image;
-            $image->fill($request->only($image->getFillable()));
+            $imageName = time().'.png';
+            // return $request;
+            if($request->is_import == 'true'){
+
+                Storage::disk('minio')->putFileAs("/public/images/", $request->file('asset_path'), $imageName);
+
+                $image->asset_path = "/images/" .  $imageName;
+                $image->patient_id = $request->patient_id;
+            }else{
+
+                // $image = base64_decode(substr($request->asset_path, strpos($request->asset_path, ",")+1));
+
+                $data = explode(',', $request['asset_path']);
+                Storage::disk('minio')->put("/public/images/".$imageName, base64_decode($data[1]),'public');
+
+                $request['asset_path'] = "/images/" .  $imageName;
+                $image->fill($request->only($image->getFillable()));
+            }
+
+
+
             $image->save();
-            DB::commit();
+            // DB::commit();
             return $image;
 
     }

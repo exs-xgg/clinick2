@@ -126,7 +126,13 @@
                                     <div class="row mb-3">
 
                                         <div class="col-6">
-                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger"><i class="fa fa-camera"></i> New Photo</button>
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger"><i class="fa fa-camera"></i> Open Camera</button>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type='file' id='fileUpload' name='fileUpload' accept=".jpg,.png,.pdf">
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="button" class="btn btn-success" id="uploadManual"><i class="fa fa-upload"></i> Upload Photo</button>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -163,7 +169,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row mb-5">
-                                                    <div class="col-12">
+                                                    <div class="col-6">
                                                         <button class="btn btn-success col-12" id="saveImage" type="button" data-dismiss="modal">Save</button>
                                                     </div>
                                                 </div>
@@ -263,11 +269,17 @@
 
       function saveImage(){
         var fd = new FormData();
-        var data = canvas.toDataURL('image/ ');
+        if($("#fileUpload").val()){
+            var data = $("#fileUpload")[0].files[0];
+            fd.append('asset_path', data, 'file.jpg');
+            fd.append('is_import', 'true');
+        }else{
 
-        fd.append('asset_path', data);
+            var data = canvas.toDataURL('image/ ');
+            fd.append('asset_path', data);
+        }
         fd.append('patient_id', {{$patient->id}});
-
+        console.log(fd);
         fetch('/image', {
                 method:"POST",
                 headers:{
@@ -278,6 +290,7 @@
                 credentials: "same-origin",
                 body:fd
             }).then((response) => {
+                $("#fileUpload").val('');
                 location.reload();
             })
                 // .then(response => console.log(response.text()))
@@ -287,6 +300,8 @@
       // once loading is complete.
       document.getElementById('camTrigger').addEventListener('click', startup, false);
       document.getElementById('saveImage').addEventListener('click', saveImage, false);
+      document.getElementById('uploadManual').addEventListener('click', saveImage, false);
+      $("#fileUpload").val('');
     })();
 
 
