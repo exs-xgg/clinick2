@@ -301,7 +301,6 @@
       document.getElementById('camTrigger').addEventListener('click', startup, false);
       document.getElementById('saveImage').addEventListener('click', saveImage, false);
       document.getElementById('uploadManual').addEventListener('click', saveImage, false);
-      $("#fileUpload").val('');
     })();
 
 
