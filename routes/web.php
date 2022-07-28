@@ -27,7 +27,7 @@ Route::get('logout',[ LoginController::class, 'index']);
 
 Route::get('/',[ DashboardController::class, 'index']);
 
-Route::middleware(['web','auth'])->group(function () {
+Route::middleware([])->group(function () {
 
     Route::get('/search',[ PatientController::class, 'index']);
 
