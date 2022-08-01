@@ -280,6 +280,7 @@
         }
         fd.append('patient_id', {{$patient->id}});
         console.log(fd);
+        $("#uploadManual").hide();
         fetch('/image', {
                 method:"POST",
                 headers:{
