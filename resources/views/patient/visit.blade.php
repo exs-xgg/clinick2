@@ -140,7 +140,7 @@
                                         <div class="card col-3 m-4">
                                             <div class="card-header">{{$i->created_at}}</div>
                                             <div class="card-body">
-                                                <a target="blank" href="{{'http://172.104.124.8:9000/clinick/public' . $i->asset_path}}"><img class="img-visit" src="{{'http://172.104.124.8:9000/clinick/public' . $i->asset_path}}" alt="" style=" max-width: 15vw; max-height: 15vh;"></a>
+                                                <a target="blank" href="{{$i->asset_path}}"><img class="img-visit" src="{{$i->asset_path}}" alt="" style=" max-width: 15vw; max-height: 15vh;"></a>
                                             </div>
                                         </div>
                                         @endforeach

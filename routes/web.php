@@ -37,4 +37,5 @@ Route::middleware(['web','auth'])->group(function () {
     Route::resource('patient',PatientController::class);
     Route::resource('visit',VisitsController::class);
     Route::resource('image',ImageController::class);
+    Route::resource('images',ImageController::class);
 });

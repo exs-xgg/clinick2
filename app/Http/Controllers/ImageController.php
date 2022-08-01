@@ -16,7 +16,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -73,9 +73,14 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image, $id)
+    public function show(Request $request, $id)
     {
-        return Image::wherePatientId($id)->first();
+
+        header('Content-type: image/jpeg;');
+        $a = file_get_contents("http://172.104.124.8:9000/clinick/public/images/" . $id);
+        echo $a;
+
+        die();
     }
 
     /**
