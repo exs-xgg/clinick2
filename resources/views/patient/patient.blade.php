@@ -68,9 +68,9 @@
                         <button type="submit" class="btn btn-success float-right">Update Patient Information</button>
                     </form>
                 </div>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header">
+                <div class="col-md-6 col-sm-12">
+                    <div class="card mt-3">
+                        <div class="card-header text-white bg-primary">
                             Visits <span class="float-right"><button class="btn btn-success btn-sm"  data-toggle="modal" data-target=".bd-example-modal-lg">New Record</button></span>
                         </div>
                         <div class="card-body">

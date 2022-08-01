@@ -76,7 +76,7 @@
                     @csrf
                     @method('patch')
                     <input type="hidden" name="id" value="{{$visit->id}}">
-                    <div class="col-6 mb-2">
+                    <div class="col-md-6 col-sm-12 mb-2">
                         <div class="card bg-success">
                             <div class="card-header text-white">
                                 HX
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 mb-2">
+                    <div class="col-md-6 col-sm-12 mb-2">
                         <div class="card bg-info">
                             <div class="card-header">
                                 Symptoms
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 mb-2">
+                    <div class="col-md-6 col-sm-12 mb-2">
                         <div class="card bg-danger ">
                             <div class="card-header text-white">
                                 DX
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 mb-2">
+                    <div class="col-md-6 col-sm-12 mb-2">
                         <div class="card bg-warning">
                             <div class="card-header">
                                 Prescriptions/THA
@@ -125,22 +125,24 @@
                                 <div class="form-group">
                                     <div class="row mb-3">
 
-                                        <div class="col-6">
+                                        <div class="d-none">
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target=".bd-example-modal-lg" id="camTrigger"><i class="fa fa-camera"></i> Open Camera</button>
                                         </div>
-                                        <div class="col-3">
+
+                                        <div class="col-6">
+
                                             <input type='file' id='fileUpload' name='fileUpload' accept=".jpg,.png,.pdf">
                                         </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn btn-success" id="uploadManual"><i class="fa fa-upload"></i> Upload Photo</button>
+                                        <div class="col-6">
+                                            <button type="button" class="btn btn-sm btn-success" id="uploadManual"><i class="fa fa-upload"></i> Upload</button>
                                         </div>
                                     </div>
                                     <div class="row">
                                         @foreach ($images as $i)
-                                        <div class="card col-3 m-4">
+                                        <div class="card col-md-5 col-sm-12 m-4">
                                             <div class="card-header">{{$i->created_at}}</div>
                                             <div class="card-body">
-                                                <a target="blank" href="{{$i->asset_path}}"><img class="img-visit" src="{{$i->asset_path}}" alt="" style=" max-width: 15vw; max-height: 15vh;"></a>
+                                                <a target="blank" href="{{$i->asset_path}}"><img class="img-visit" src="{{$i->asset_path}}" alt="{{$i->created_at}}" style=" max-width: 100%;  max-heigh: 30vh; "></a>
                                             </div>
                                         </div>
                                         @endforeach
