@@ -71,7 +71,7 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="card mt-3">
                         <div class="card-header text-white bg-primary">
-                            Visits <span class="float-right"><button class="btn btn-success btn-sm"  data-toggle="modal" data-target=".bd-example-modal-lg">New Record</button></span>
+                            <i class="fa fa-clipboard"></i>  Visits <span class="float-right"><button class="btn btn-light btn-sm"  data-toggle="modal" data-target=".visitModal">New Visit</button></span>
                         </div>
                         <div class="card-body">
                             <ul class="list-group">
@@ -81,7 +81,20 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="card mt-3">
+                        <div class="card-header text-white bg-success">
+                           <i class="fa fa-stethoscope"></i> Vitals <span class="float-right"><button class="btn btn-light btn-sm"  data-toggle="modal" data-target=".bd-example-modal-lg">New Vitals</button></span>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                @foreach ($visits as $v)
+                                <li class="list-group-item"><a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->format("m-d-Y H:i a")}}</a>, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                    {{-- VISIT MODAL --}}
+                    <div class="modal fade visitModal" tabindex="-1" role="dialog" aria-labelledby="visitModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -111,6 +124,78 @@
                                         <textarea class="form-control" id="prescription" name="prescription" maxlength="250"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-success">Save Record</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- VITAL SIGNS MODAL --}}
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="vitalsModal" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="vitalsModal">New Vitals</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/vitals" method="post">
+                                        @csrf
+
+                                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="history" class="col-form-label">Height</label>
+                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="symptoms" class="col-form-label">Weight</label>
+                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="history" class="col-form-label">Temperature</label>
+                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="symptoms" class="col-form-label">Blood Pressure</label>
+                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="history" class="col-form-label">Heart Rate</label>
+                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="symptoms" class="col-form-label">Pulse Rate</label>
+                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="history" class="col-form-label">Respiratory Rate</label>
+                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="symptoms" class="col-form-label">Waist Circumference</label>
+                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="history" class="col-form-label">Mid Upper Arm Circumference</label>
+                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
