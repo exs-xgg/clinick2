@@ -35,7 +35,8 @@ class VitalSignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vitals = VitalSign::create($request->only((new VitalSign)->getFillable()));
+        return $vitals;
     }
 
     /**
@@ -44,9 +45,10 @@ class VitalSignController extends Controller
      * @param  \App\Models\VitalSign  $vitalSign
      * @return \Illuminate\Http\Response
      */
-    public function show(VitalSign $vitalSign)
+    public function show(VitalSign $vitalSign, $id)
     {
-        //
+        $vitals = VitalSign::whereId($id)->first();
+        return $vitals;
     }
 
     /**
