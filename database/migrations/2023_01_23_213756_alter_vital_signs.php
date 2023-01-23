@@ -13,7 +13,8 @@ class AlterVitalSigns extends Migration
      */
     public function up()
     {
-        Schema::table('patients', function($table) {
+        Schema::table('vital_signs', function($table) {
+            $table->dropForeign(['visit_id']);
             $table->dropColumn('visit_id');
 
             $table->string('waist_circumference', 6 )->nullable();

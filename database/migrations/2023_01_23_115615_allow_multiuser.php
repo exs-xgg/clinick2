@@ -14,17 +14,17 @@ class AllowMultiuser extends Migration
     public function up()
     {
         Schema::table('patients', function($table) {
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::table('visits', function($table) {
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::table('vital_signs', function($table) {
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
