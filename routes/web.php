@@ -17,6 +17,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\VisitsController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VitalSignController;
 
 
 Route::get('/login',function(){
@@ -27,7 +28,7 @@ Route::get('logout',[ LoginController::class, 'index']);
 
 Route::get('/',[ DashboardController::class, 'index']);
 
-Route::middleware(['web','auth'])->group(function () {
+Route::middleware([])->group(function () {
 
     Route::get('/search',[ PatientController::class, 'index']);
 
@@ -38,4 +39,5 @@ Route::middleware(['web','auth'])->group(function () {
     Route::resource('visit',VisitsController::class);
     Route::resource('image',ImageController::class);
     Route::resource('images',ImageController::class);
+    Route::resource('vitalsigns',VitalSignController::class);
 });

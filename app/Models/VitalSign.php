@@ -10,13 +10,16 @@ class VitalSign extends Model
     use HasFactory;
     protected $table = 'vital_signs';
     protected $fillable = [
-        'patient_id',
-        'visit_id',
+        'patient_id', //required
         'temp',
         'weight',
         'height',
         'bp',
         'rr',
-        'hr'
+        'hr',
+        'waist',
+        'pr',
+        'user_id', //required
+        'muac'
     ];
 }

@@ -17,7 +17,7 @@ class AlterVitalSigns extends Migration
             $table->dropForeign(['visit_id']);
             $table->dropColumn('visit_id');
 
-            $table->string('waist_circumference', 6 )->nullable();
+            $table->string('waist', 6 )->nullable();
             $table->string('pr', 6 )->nullable();
             $table->string('muac', 6 )->nullable(); //mid upper arm circumference
         });
