@@ -21,10 +21,15 @@ class Patient extends Model
         'occupation',
         'hmo',
         'address',
-        'temp_id'
+        'temp_id',
+        'user_id'
     ];
 
     public function visits(){
         return $this->hasMany(Visit::class);
+    }
+
+    public function vitals(){
+        return $this->hasMany(VitalSign::class);
     }
 }

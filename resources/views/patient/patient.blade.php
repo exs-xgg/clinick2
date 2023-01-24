@@ -107,6 +107,7 @@
                                     <form action="/visit" method="post">
                                         @csrf
                                         <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                        <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                         <div class="form-group">
                                         <label for="history" class="col-form-label">History</label>
                                         <textarea class="form-control" id="history" name="history" maxlength="250"></textarea>
@@ -143,59 +144,61 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/vitals" method="post">
+                                    <form action="/vitalsigns" method="post">
                                         @csrf
 
                                         <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                        <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="history" class="col-form-label">Height</label>
-                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                    <label for="height" class="col-form-label">Height</label>
+                                                    <input type="text" class="form-control" id="height" name="height" maxlength="250">
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="symptoms" class="col-form-label">Weight</label>
-                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="history" class="col-form-label">Temperature</label>
-                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="symptoms" class="col-form-label">Blood Pressure</label>
-                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                    <label for="weight" class="col-form-label">Weight</label>
+                                                    <input type="text" class="form-control" id="weight" name="weight" maxlength="250">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="history" class="col-form-label">Heart Rate</label>
-                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                    <label for="temp" class="col-form-label">Temperature</label>
+                                                    <input type="text" class="form-control" id="temp" name="temp" maxlength="250">
                                                 </div>
                                                 <div class="col-6">
-                                                    <label for="symptoms" class="col-form-label">Pulse Rate</label>
-                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <label for="history" class="col-form-label">Respiratory Rate</label>
-                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="symptoms" class="col-form-label">Waist Circumference</label>
-                                                    <input type="text" class="form-control" id="symptoms" name="symptoms" maxlength="250">
+                                                    <label for="bp" class="col-form-label">Blood Pressure</label>
+                                                    <input type="text" class="form-control" id="bp" name="bp" maxlength="250">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <label for="history" class="col-form-label">Mid Upper Arm Circumference</label>
-                                                    <input type="text" class="form-control" id="history" name="history" maxlength="250">
+                                                    <label for="hr" class="col-form-label">Heart Rate</label>
+                                                    <input type="text" class="form-control" id="hr" name="hr" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="pr" class="col-form-label">Pulse Rate</label>
+                                                    <input type="text" class="form-control" id="pr" name="pr" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="rr" class="col-form-label">Respiratory Rate</label>
+                                                    <input type="text" class="form-control" id="rr" name="rr" maxlength="250">
+                                                </div>
+                                                <div class="col-6">
+                                                    <label for="waist" class="col-form-label">Waist Circumference</label>
+                                                    <input type="text" class="form-control" id="waist" name="waist" maxlength="250">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <label for="muac" class="col-form-label">Mid Upper Arm Circumference</label>
+                                                    <input type="text" class="form-control" id="muac" name="muac" maxlength="250">
                                                 </div>
                                             </div>
                                         </div>
 
+                                        <button type="submit" class="btn btn-success">Save Record</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">

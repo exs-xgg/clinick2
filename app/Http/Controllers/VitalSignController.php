@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use App\Models\VitalSign;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 
 class VitalSignController extends Controller
@@ -35,8 +37,12 @@ class VitalSignController extends Controller
      */
     public function store(Request $request)
     {
-        $vitals = VitalSign::create($request->only((new VitalSign)->getFillable()));
-        return $vitals;
+        VitalSign::create($request->only((new VitalSign)->getFillable()));
+
+        $patient = Patient::whereId($request->patient_id)->first();
+        $visits = $patient->visits()->get();
+
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits]);
     }
 
     /**
