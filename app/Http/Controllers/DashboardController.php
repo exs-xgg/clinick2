@@ -18,9 +18,12 @@ class DashboardController extends Controller
     {
         if(Auth::check()){
 
-            $recent = ActivityLog::select('patients.id', 'patients.fname', 'patients.lname', 'patients.mname', 'activity_logs.created_at')
-            ->join('patients', 'patients.id','=','activity_logs.patient_id')
-            ->orderBy('activity_logs.created_at', 'desc')->limit(10)->get();
+            $recent =
+                ActivityLog::select('patients.id', 'patients.fname', 'patients.lname', 'patients.mname', DB::raw('MAX(activity_logs.created_at) as created_at'))
+                    ->join('patients', 'patients.id','=','activity_logs.patient_id')
+                    ->orderBy('created_at', 'desc')
+                    ->groupBy('patients.id')
+                    ->limit(10)->get();
             return view('welcome')->with(['recent' => $recent]);
         }else{
 

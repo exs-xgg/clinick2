@@ -65,11 +65,12 @@ class PatientController extends Controller
     {
         $patient = Patient::whereId($id)->first();
         $visits = $patient->visits()->get();
+        $vitals = $patient->vitals()->get();
 
         $log = new ActivityLog();
         $log->patient_id = $patient->id;
         $log->save();
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits]);
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals]);
     }
 
     /**

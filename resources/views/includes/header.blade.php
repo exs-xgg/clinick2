@@ -7,6 +7,7 @@
         <title>Clinick Web</title>
         <link href="/css/app.css" rel="stylesheet">
     </head>
+
     <body class="body">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Clinick Web</a>

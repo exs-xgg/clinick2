@@ -22,11 +22,11 @@
                 <div class="row mb-3">
                     <div class="col-lg-12 col-sm-12">
                         <div class="card">
-                            <div class="card-header" data-toggle="collapse" href="#ptInfo" role="button" aria-expanded="false" aria-controls="ptInfo">Patient Information (click to expand)<span class="float-right"><a href="/patient/{{$patient->id}}">View Whole Profile</a></span></div>
+                            <div class="card-header" data-toggle="collapse" href="#ptInfo" role="button" aria-expanded="false" aria-controls="ptInfo">Patient Information (click to expand)</div>
                             <div class="card-body collapse " id="ptInfo">
                                 <table class="table table-sm">
                                     <tr>
-                                        <th class="col-2">Name</th><td class="col-10">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</td>
+                                        <th class="col-2">Name</th><td class="col-10"><a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a></td>
                                     </tr>
                                     <tr>
                                         <th class="col-2">Birthdate</th><td class="col-10">{{$patient->birthdate ?? ''}} {{ $patient->age ? '(' . $patient->age . ')' : ''}}</td>

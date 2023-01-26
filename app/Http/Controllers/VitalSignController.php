@@ -41,8 +41,9 @@ class VitalSignController extends Controller
 
         $patient = Patient::whereId($request->patient_id)->first();
         $visits = $patient->visits()->get();
+        $vitals = $patient->vitals()->get();
 
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits]);
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits,'vitals' => $vitals]);
     }
 
     /**
