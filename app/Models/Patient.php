@@ -32,6 +32,9 @@ class Patient extends Model
     public function vitals(){
         return $this->hasMany(VitalSign::class);
     }
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
     public function goToPatientPage($id, $message = null){
 
         $patient = self::whereId($id)->first();

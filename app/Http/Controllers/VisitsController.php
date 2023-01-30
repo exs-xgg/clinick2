@@ -51,8 +51,9 @@ class VisitsController extends Controller
     {
         $visit = Visit::whereId($id)->first();
         $patient_info = Patient::whereId($visit->patient_id)->first();
-        $images = Image::wherePatientId($visit->patient_id)->get();
-        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images]);
+        $images = $patient_info->images()->get();
+        $vitals = $patient_info->vitals()->get();
+        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images, 'vitals' => $vitals]);
     }
 
     /**
