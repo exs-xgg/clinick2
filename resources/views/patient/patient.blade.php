@@ -3,7 +3,7 @@
 
 <div class="container">
 
-    @if ($message = Session::get('success'))
+    @if ($message = Session::get('success') ?? $success)
 
     <div class="alert alert-success alert-block">
 
