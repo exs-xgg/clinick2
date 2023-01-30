@@ -38,12 +38,7 @@ class VitalSignController extends Controller
     public function store(Request $request)
     {
         VitalSign::create($request->only((new VitalSign)->getFillable()));
-
-        $patient = Patient::whereId($request->patient_id)->first();
-        $visits = $patient->visits()->get();
-        $vitals = $patient->vitals()->get();
-
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits,'vitals' => $vitals]);
+        return Patient::goToPatientPage($request->patient_id);
     }
 
     /**
@@ -87,8 +82,13 @@ class VitalSignController extends Controller
      * @param  \App\Models\VitalSign  $vitalSign
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VitalSign $vitalSign)
+    public function destroy(VitalSign $vitalSign, $id)
     {
-        //
+
+
+        $vital_sign = VitalSign::whereId($id)->first();
+        $patient = Patient::whereId($vital_sign->patient_id)->first();
+
+        return Patient::goToPatientPage($vital_sign->patient_id);
     }
 }

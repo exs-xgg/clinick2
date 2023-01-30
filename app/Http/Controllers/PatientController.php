@@ -63,14 +63,7 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $patient = Patient::whereId($id)->first();
-        $visits = $patient->visits()->get();
-        $vitals = $patient->vitals()->get();
-
-        $log = new ActivityLog();
-        $log->patient_id = $patient->id;
-        $log->save();
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals]);
+        return Patient::goToPatientPage($id);
     }
 
     /**
