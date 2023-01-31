@@ -13,10 +13,9 @@
     </div>
 
     @endif
-    <form action="/visit/{{$visit->id}}" method="post">
         <div class="card border-success">
             <div class="card-header">
-                Patient Record #{{$visit->id}} <span class="float-right"><button class="btn btn-success btn-sm" type="submit">Update Record</button></span>
+                Patient Record #{{$visit->id}} <span class="float-right"></span>
             </div>
             <div class="card-body">
                 <div class="row mb-3">
@@ -54,72 +53,11 @@
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-header" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample" href="#collapseExample">Vitals (click to expand)</div>
-                            <div class="card-body collapse" id="collapseExample">
-                                <ul class="list-group">
-                                    @foreach ($vitals as $v)
-                                    <li class="list-group-item" data-toggle="collapse" href="#collapseExample{{$v->id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{$v->id}}">{{Carbon\Carbon::parse( $v->created_at)->format("m-d-Y H:i a")}}, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
-
-                                    <div class="collapse" id="collapseExample{{$v->id}}">
-                                        <div class="card card-body">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="height" class="col-form-label">Height</label>
-                                                        <input type="text" class="form-control" id="height" name="height" value="{{$v->height }}">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="weight" class="col-form-label">Weight</label>
-                                                        <input type="text" class="form-control" id="weight" name="weight" value="{{$v->weight }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="temp" class="col-form-label">Temperature</label>
-                                                        <input type="text" class="form-control" id="temp" name="temp" value="{{$v->temp }}">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="bp" class="col-form-label">Blood Pressure</label>
-                                                        <input type="text" class="form-control" id="bp" name="bp" value="{{$v->bp }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="hr" class="col-form-label">Heart Rate</label>
-                                                        <input type="text" class="form-control" id="hr" name="hr" value="{{$v->hr }}">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="pr" class="col-form-label">Pulse Rate</label>
-                                                        <input type="text" class="form-control" id="pr" name="pr" value="{{$v->pr }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="rr" class="col-form-label">Respiratory Rate</label>
-                                                        <input type="text" class="form-control" id="rr" name="rr" value="{{$v->rr }}">
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <label for="waist" class="col-form-label">Waist Circumference</label>
-                                                        <input type="text" class="form-control" id="waist" name="waist" value="{{$v->waist }}">
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <label for="muac" class="col-form-label">Mid Upper Arm Circumference</label>
-                                                        <input type="text" class="form-control" id="muac" name="muac" value="{{$v->muac }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
+                        @include('patient.vitals')
                     </div>
                 </div>
 
+            <form action="/visit/{{$visit->id}}" method="post">
                 <div class="row mb-3">
                     @csrf
                     @method('patch')
@@ -155,12 +93,13 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 mb-2">
-                        <div class="card bg-warning">
-                            <div class="card-header" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTHA" href="#collapseTHA">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTHA" href="#collapseTHA">
                                 Prescriptions/THA
                             </div>
                             <div class="card-body collapse multi-collapse" id="collapseTHA">
-                                <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea>
+                                @include('patient.prescription')
+                                {{-- <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea> --}}
                             </div>
                         </div>
                     </div>
@@ -238,8 +177,8 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 
