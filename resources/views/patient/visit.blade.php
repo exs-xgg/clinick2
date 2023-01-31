@@ -124,62 +124,50 @@
                     @csrf
                     @method('patch')
                     <input type="hidden" name="id" value="{{$visit->id}}">
-                    <div class="col-md-6 col-sm-12 mb-2">
+                    <div class="col-md-12 col-sm-12 mb-2">
                         <div class="card bg-success">
-                            <div class="card-header text-white">
+                            <div class="card-header text-white" data-toggle="collapse" aria-expanded="false" aria-controls="collapseHx" href="#collapseHx">
                                 HX
                             </div>
-                            <div class="card-body">
+                            <div class="card-body collapse multi-collapse" id="collapseHx">
                                 <textarea class="form-control col-12" name="history" id="" cols="30" rows="10">{{$visit->history}}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 mb-2">
+                    <div class="col-md-12 col-sm-12 mb-2">
                         <div class="card bg-info">
-                            <div class="card-header">
+                            <div class="card-header" data-toggle="collapse" aria-expanded="false" aria-controls="collapseSymptoms" href="#collapseSymptoms">
                                 Symptoms
                             </div>
-                            <div class="card-body">
+                            <div class="card-body collapse multi-collapse" id="collapseSymptoms">
                                 <textarea class="form-control col-12" name="symptoms" id="symptoms" cols="30" rows="10">{{$visit->symptoms}}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 mb-2">
-                        <div class="card bg-danger ">
-                            <div class="card-header text-white">
+                    <div class="col-md-12 col-sm-12 mb-2">
+                        <div class="card bg-danger">
+                            <div class="card-header text-white"  data-toggle="collapse" aria-expanded="false" aria-controls="collapseDx" href="#collapseDx">
                                 DX
                             </div>
-                            <div class="card-body">
+                            <div class="card-body collapse multi-collapse" id="collapseDx">
                                 <textarea class="form-control col-12" name="diagnosis" id="" cols="30" rows="10">{{$visit->diagnosis}}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12 mb-2">
+                    <div class="col-md-12 col-sm-12 mb-2">
                         <div class="card bg-warning">
-                            <div class="card-header">
+                            <div class="card-header" data-toggle="collapse" aria-expanded="false" aria-controls="collapseTHA" href="#collapseTHA">
                                 Prescriptions/THA
                             </div>
-                            <div class="card-body">
+                            <div class="card-body collapse multi-collapse" id="collapseTHA">
                                 <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-sm-12 mb-2">
-                        <div class="card">
-                            <div class="card-header text-indigo bg-alpha">
-                                Medications
-                            </div>
-                            <div class="card-body">
-                                asd
-                            </div>
-                        </div>
-                    </div>
-
-    </form>
                     <div class="col-12 mb-2">
                         <div class="card border-info">
-                            <div class="card-header text-white bg-info">Photos</div>
-                            <div class="card-body">
+                            <div class="card-header text-white bg-info" data-toggle="collapse" aria-expanded="false" aria-controls="collapsePhotos" href="#collapsePhotos">Photos</div>
+                            <div class="card-body collapse multi-collapse" id="collapsePhotos">
                                 <div class="form-group">
                                     <div class="row mb-3">
 
@@ -242,11 +230,55 @@
                             </div>
                         </div>
                     </div>
+                    <button class="float" type="submit">
+                        <i class="fa fa-save my-float"></i>
+                    </button>
+                    <span class="float2" data-toggle="collapse" data-target=".multi-collapse">
+                        <i class="fa fa-th-list my-float"></i>
+                    </button>
                 </div>
             </div>
         </div>
+    </form>
 </div>
 
+
+<style>
+    .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:20px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+    border: 0px;
+    padding-bottom:20px;
+    padding-top: -10px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}.float2{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:105px;
+	right:20px;
+	background-color:rgb(203, 218, 77);
+	color:#FFF;
+	border-radius:50px;
+    border: 0px;
+    padding-bottom:20px;
+    padding-top: -10px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:15px;
+    font-size: 30px
+}
+</style>
 
 <script>
   (function() {
