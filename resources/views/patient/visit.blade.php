@@ -46,6 +46,9 @@
                                     <tr>
                                         <th class="col-2">HMO</th><td class="col-10">{{Str::upper($patient->hmo)}}</td>
                                     </tr>
+                                    <tr>
+                                        <th class="col-2">Address</th><td class="col-10">{{Str::upper($patient->address)}}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -158,6 +161,16 @@
                             </div>
                             <div class="card-body">
                                 <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 mb-2">
+                        <div class="card">
+                            <div class="card-header text-indigo bg-alpha">
+                                Medications
+                            </div>
+                            <div class="card-body">
+                                asd
                             </div>
                         </div>
                     </div>
