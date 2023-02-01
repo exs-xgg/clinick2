@@ -4,6 +4,7 @@
         </div>
   </body>
   <script src="/js/app.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
   <script type="text/javascript">
     $.ajaxSetup({
         headers: {
@@ -11,4 +12,5 @@
         }
     });
     </script>
+    @stack('scripts')
 </html>

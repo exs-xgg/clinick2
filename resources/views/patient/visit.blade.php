@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-            <form action="/visit/{{$visit->id}}" method="post">
+            <form autocomplete="off" action="/visit/{{$visit->id}}" method="post">
                 <div class="row mb-3">
                     @csrf
                     @method('patch')
@@ -218,6 +218,7 @@
     font-size: 30px
 }
 </style>
+@push('scripts')
 
 <script>
   (function() {
@@ -338,4 +339,6 @@
 
 
 </script>
+
+@endpush
 @stop

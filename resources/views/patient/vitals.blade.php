@@ -78,7 +78,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/vitalsigns" method="post">
+                <form autocomplete="off" action="/vitalsigns" method="post">
                     @csrf
 
                     <input type="hidden" name="patient_id" value="{{$patient->id}}">

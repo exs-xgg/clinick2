@@ -16,7 +16,8 @@ class VitalSignController extends Controller
      */
     public function index()
     {
-        //
+        return ['PARACETAMOL','ASCORBIC ACID', 'CETIRIZINE'];
+
     }
 
     /**

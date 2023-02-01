@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
-                    <form action="/patient/{{$patient->id}}" method="post">
+                    <form autocomplete="off" action="/patient/{{$patient->id}}" method="post">
                         <table class="table">
                             @csrf
                             @method('patch')
