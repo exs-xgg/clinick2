@@ -98,7 +98,14 @@
                                 Prescriptions/THA
                             </div>
                             <div class="card-body collapse multi-collapse" id="collapseTHA">
-                                @include('patient.prescription')
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-6">
+                                        @include('patient.prescription')
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <textarea class="form-control" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea>
+                                    </div>
+                                </div>
                                 {{-- <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea> --}}
                             </div>
                         </div>

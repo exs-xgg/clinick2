@@ -85,6 +85,12 @@
 
                         @include('patient.vitals')
                     </div>
+
+                    @if (env('VACCINE')=='Y')
+                    <div class="card mt-3">
+                        @include('patient.vaccine')
+                    </div>
+                    @endif
                     {{-- VISIT MODAL --}}
                     <div class="modal fade visitModal" tabindex="-1" role="dialog" aria-labelledby="visitModal" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
