@@ -78,62 +78,21 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form autocomplete="off" action="/vaccine" method="post">
-                    @csrf
-
-                    <input type="hidden" name="patient_id" value="{{$patient->id}}">
-                    <input type="hidden" name="user_id" value="{{Auth::id()}}">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="height" class="col-form-label">Height</label>
-                                <input type="text" class="form-control" id="height" name="height" maxlength="250">
-                            </div>
-                            <div class="col-6">
-                                <label for="weight" class="col-form-label">Weight</label>
-                                <input type="text" class="form-control" id="weight" name="weight" maxlength="250">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="temp" class="col-form-label">Temperature</label>
-                                <input type="text" class="form-control" id="temp" name="temp" maxlength="250">
-                            </div>
-                            <div class="col-6">
-                                <label for="bp" class="col-form-label">Blood Pressure</label>
-                                <input type="text" class="form-control" id="bp" name="bp" maxlength="250">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="hr" class="col-form-label">Heart Rate</label>
-                                <input type="text" class="form-control" id="hr" name="hr" maxlength="250">
-                            </div>
-                            <div class="col-6">
-                                <label for="pr" class="col-form-label">Pulse Rate</label>
-                                <input type="text" class="form-control" id="pr" name="pr" maxlength="250">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="rr" class="col-form-label">Respiratory Rate</label>
-                                <input type="text" class="form-control" id="rr" name="rr" maxlength="250">
-                            </div>
-                            <div class="col-6">
-                                <label for="waist" class="col-form-label">Waist Circumference</label>
-                                <input type="text" class="form-control" id="waist" name="waist" maxlength="250">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="muac" class="col-form-label">Mid Upper Arm Circumference</label>
-                                <input type="text" class="form-control" id="muac" name="muac" maxlength="250">
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Save Record</button>
-                </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Vaccine</th><th>1st Dose</th><th>2nd Dose</th><th>3rd Dose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>BCG</td>
+                            <td>AUG-31-2022</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
