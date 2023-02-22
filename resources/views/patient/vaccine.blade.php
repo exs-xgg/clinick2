@@ -62,23 +62,23 @@
             </div>
             @endforeach
 
-            <li class="list-group-item" ><button class="btn btn-info text-white"  data-toggle="modal" data-target=".vitals-modal"><i class="fa fa-plus"></i> Record New Vaccine</button></li>
+            <li class="list-group-item" ><button class="btn btn-info text-white"  data-toggle="modal" data-target=".vaccine-modal"><i class="fa fa-clipboard"></i> View Vaccine Records</button></li>
         </ul>
     </div>
 </div>
 
-                    {{-- VITAL SIGNS MODAL --}}
-<div class="modal fade bd-example-modal-lg vitals-modal" tabindex="-1" role="dialog" aria-labelledby="vitals-modal" aria-hidden="true">
+                    {{-- Vaccine MODAL --}}
+<div class="modal fade bd-example-modal-lg vaccine-modal" tabindex="-1" role="dialog" aria-labelledby="vaccine-modal" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="vitalsModal">New Vitals</h5>
+                <h5 class="modal-title" id="vaccineModal">Add New Vaccine</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form autocomplete="off" action="/vitalsigns" method="post">
+                <form autocomplete="off" action="/vaccine" method="post">
                     @csrf
 
                     <input type="hidden" name="patient_id" value="{{$patient->id}}">
