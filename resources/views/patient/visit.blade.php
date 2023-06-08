@@ -102,9 +102,6 @@
                                     <div class="col-lg-12 col-md-6">
                                         @include('patient.prescription')
                                     </div>
-                                    <div class="col-lg-12 col-md-6">
-                                        <textarea class="form-control" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea>
-                                    </div>
                                 </div>
                                 {{-- <textarea class="form-control col-12" name="prescription" id="prescription" cols="30" rows="10">{{$visit->prescription}}</textarea> --}}
                             </div>
