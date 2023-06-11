@@ -29,10 +29,22 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>ROTA</td>
+                            <td>@isset($vaccines['ROTA1']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA2']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA3']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                        </tr>
+                        <tr>
                             <td>BCG</td>
-                            <td>AUG-31-2022</td>
-                            <td>-</td>
-                            <td>-</td>
+                            <td>@isset($vaccines['BCG1']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG2']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG3']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                        </tr>
+                        <tr>
+                            <td>HEPA</td>
+                            <td>@isset($vaccines['HEPA1']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA2']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA3']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
                         </tr>
                     </tbody>
                 </table>
@@ -54,7 +66,11 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="/vaccine" method="post">
             <div class="modal-body">
+                @csrf
+                <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                <input type="hidden" name="user_id" value="{{Auth::id()}}">
                 <table class="table">
                     <thead>
                         <tr>
@@ -65,9 +81,10 @@
                         <tr>
                             <td>
                                 <select name="vaccine_id" id="vaccine_id">
-                                    <option value="ROTA1">ROTA 1</option>
-                                    <option value="ROTA2">ROTA 2</option>
-                                    <option value="ROTA3">ROTA 3</option>
+                                    @foreach ($lib_vaccines as $lib_vaccine)
+
+                                    <option value="{{$lib_vaccine->vax_name}}">{{$lib_vaccine->vax_name}}</option>
+                                    @endforeach
                                 </select>
                             </td>
                             <td><input type="date" name="date_administered" id="date_administered"></td>
@@ -77,8 +94,9 @@
                 <i> Vaccine not available on the list? It may have been administered already.</i>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal">Save</button><button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">Save</button><button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

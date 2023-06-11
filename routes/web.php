@@ -18,6 +18,7 @@ use App\Http\Controllers\VisitsController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VitalSignController;
+use App\Http\Controllers\VaccineController;
 
 
 Route::get('/login',function(){
@@ -40,4 +41,5 @@ Route::middleware([])->group(function () {
     Route::resource('image',ImageController::class);
     Route::resource('images',ImageController::class);
     Route::resource('vitalsigns',VitalSignController::class);
+    Route::resource('vaccine', VaccineController::class);
 });

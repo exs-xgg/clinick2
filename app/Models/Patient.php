@@ -38,16 +38,26 @@ class Patient extends Model
     public function vaccines(){
         return $this->hasMany(Vaccine::class);
     }
+    private function transformVaccine($vaccine_array){
+        // {"id":1,"patient_id":334,"vaccine_id":"ROTA1","date_administered":"2023-02-06","user_id":1,"created_at":"2023-02-05T16:00:00.000000Z","updated_at":"2023-02-05T16:00:00.000000Z"}
+        $transformed_vax_array = [];
+        foreach($vaccine_array as $vaccine){
+            $transformed_vax_array[$vaccine->vaccine_id] = ['date_administered' => $vaccine->date_administered];
+        }
+        return $transformed_vax_array;
+    }
     public function goToPatientPage($id, $message = null){
 
         $patient = self::whereId($id)->first();
         $visits = $patient->visits()->get();
         $vitals = $patient->vitals()->get();
         $vaccines = $patient->vaccines()->get();
+        $lib_vaccines = LibVaccine::get();
 
         $log = new ActivityLog();
         $log->patient_id = $patient->id;
         $log->save();
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals, 'success' => $message, 'vaccines' => $vaccines]);
+
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals, 'success' => $message, 'vaccines' => self::transformVaccine($vaccines), 'lib_vaccines' => $lib_vaccines]);
     }
 }

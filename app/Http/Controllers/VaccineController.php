@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vaccine;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class VaccineController extends Controller
@@ -35,7 +36,8 @@ class VaccineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vaccine = Vaccine::create($request->only((new Vaccine)->getFillable()));
+        return Patient::goToPatientPage($request->patient_id, $message = "Vaccine Saved");
     }
 
     /**
