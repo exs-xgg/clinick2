@@ -7,12 +7,10 @@
 @push('scripts')
 <script>
  var src = {
-  "PARACETAMOL": 1,
-  "MEFENAMIC ACID": 1,
-  "CETIRIZINE": 1,
-  "AMLODIPINE": 1,
-  "IBUPROFEN": 1,
-  "ASCORBIC ACID": 1,
+    @foreach ($drugs as $drug)
+
+        "{{$drug->drug_name}}": 1,
+    @endforeach
 }
 
 function onSelectItem(item, element) {

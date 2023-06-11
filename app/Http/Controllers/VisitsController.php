@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Visit;
 use App\Models\Patient;
 use App\Models\Image;
+use App\Models\LibDrug;
 use Illuminate\Http\Request;
 use Storage;
 class VisitsController extends Controller
@@ -53,7 +54,8 @@ class VisitsController extends Controller
         $patient_info = Patient::whereId($visit->patient_id)->first();
         $images = $patient_info->images()->get();
         $vitals = $patient_info->vitals()->get();
-        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images, 'vitals' => $vitals]);
+        $drugs = LibDrug::groupBy("drug_name")->get();
+        return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images, 'vitals' => $vitals, 'drugs' => $drugs]);
     }
 
     /**
