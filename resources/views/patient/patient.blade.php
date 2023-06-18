@@ -37,7 +37,7 @@
                                 <th class="col-2">Birthdate</th><td class="col-10"><input type="text" name="birthdate" value="{{$patient->birthdate ?? ''}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-2">Address</th><td class="col-10"><input type="text" name="birthdate" value="{{$patient->address ?? ''}}"></td>
+                                <th class="col-2">Address</th><td class="col-10"><input type="text" name="address" value="{{$patient->address ?? ''}}"></td>
                             </tr>
                             <tr>
                                 <th class="col-2">Gender</th><td class="col-10">
