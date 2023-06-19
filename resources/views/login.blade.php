@@ -3,6 +3,11 @@
 
 <div class="container">
 
+    <div class="col-lg-6 col-md-8 col-sm-12 mx-auto my-5">
+        <img class="mx-auto d-block landing-logo" src="/img/landing-logo.png" alt="">
+
+
+    </div>
     <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
         <div class="card">
             <div class="card-header">
@@ -22,5 +27,9 @@
     </div>
 </div>
 
-
+<style>
+.landing-logo {
+    width: 8vw
+}
+</style>
 @stop
