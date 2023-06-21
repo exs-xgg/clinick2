@@ -22,7 +22,10 @@ class Patient extends Model
         'hmo',
         'address',
         'temp_id',
-        'user_id'
+        'user_id',
+        'mothers_name',
+        'fathers_name',
+        'emergency_contact_no'
     ];
 
     public function visits(){
