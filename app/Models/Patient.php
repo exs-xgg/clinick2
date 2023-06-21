@@ -52,7 +52,8 @@ class Patient extends Model
         $visits = $patient->visits()->get();
         $vitals = $patient->vitals()->get();
         $vaccines = $patient->vaccines()->get();
-        $lib_vaccines = LibVaccine::get();
+        $vaccines_array = $patient->vaccines()->get(['vaccine_id']);
+        $lib_vaccines = LibVaccine::whereNotIn('vax_name',$vaccines_array)->orderBy('vax_name', 'asc')->get();
 
         $log = new ActivityLog();
         $log->patient_id = $patient->id;
