@@ -49,16 +49,32 @@
                     </select>
                 </div>
 
-                <div class="row col-12">
-                    <label for="contact_no" class="col-sm-2 col-form-label">Contact Number</label>
-                    <input class="form-control col-sm-10 mb-3" type="text" name="contact_no" id="contact_no">
-                </div>
 
                 <div class="row col-12">
                     <label for="address" class="col-sm-2 col-form-label">Address</label>
                     <input class="form-control col-sm-10 mb-3" type="text" name="address" id="address">
                 </div>
 
+                <div class="row col-12">
+                    <label for="contact_no" class="col-sm-2 col-form-label">Patient's Contact Number</label>
+                    <input class="form-control col-sm-10 mb-3" type="text" name="contact_no" id="contact_no">
+                </div>
+
+                <div class="row col-12">
+                    <label for="mothers_name" class="col-sm-2 col-form-label">Mother's Name</label>
+                    <input class="form-control col-sm-10 mb-3" type="text" name="mothers_name" id="mothers_name">
+                </div>
+
+
+                <div class="row col-12">
+                    <label for="fatherrs_name" class="col-sm-2 col-form-label">Father's Name</label>
+                    <input class="form-control col-sm-10 mb-3" type="text" name="fatherrs_name" id="fatherrs_name">
+                </div>
+
+                <div class="row col-12">
+                    <label for="emergency_contact_no" class="col-sm-2 col-form-label">Emergency Contact Number</label>
+                    <input class="form-control col-sm-10 mb-3" type="text" name="emergency_contact_no" id="emergency_contact_no">
+                </div>
 
                 <div class="row col-12">
                     <label for="civil_stat" class="col-sm-2 col-form-label">Civil Status</label>
