@@ -31,20 +31,26 @@
                         <tr>
                             <td>ROTA</td>
                             <td>@isset($vaccines['ROTA1']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['ROTA2']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['ROTA3']){{ $vaccines['ROTA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA2']){{ $vaccines['ROTA2']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA3']){{ $vaccines['ROTA3']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA4']){{ $vaccines['ROTA4']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['ROTA5']){{ $vaccines['ROTA5']['date_administered'] }} @else {{ "-" }} @endisset</td>
                         </tr>
                         <tr>
                             <td>BCG</td>
                             <td>@isset($vaccines['BCG1']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['BCG2']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['BCG3']){{ $vaccines['BCG1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG2']){{ $vaccines['BCG2']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG3']){{ $vaccines['BCG3']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG4']){{ $vaccines['BCG4']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['BCG5']){{ $vaccines['BCG5']['date_administered'] }} @else {{ "-" }} @endisset</td>
                         </tr>
                         <tr>
                             <td>HEPA</td>
                             <td>@isset($vaccines['HEPA1']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['HEPA2']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
-                            <td>@isset($vaccines['HEPA3']){{ $vaccines['HEPA1']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA2']){{ $vaccines['HEPA2']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA3']){{ $vaccines['HEPA3']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA4']){{ $vaccines['HEPA4']['date_administered'] }} @else {{ "-" }} @endisset</td>
+                            <td>@isset($vaccines['HEPA5']){{ $vaccines['HEPA5']['date_administered'] }} @else {{ "-" }} @endisset</td>
                         </tr>
                     </tbody>
                 </table>
