@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Carbon\Carbon;
 class Patient extends Model
 {
     use HasFactory;
@@ -50,7 +50,7 @@ class Patient extends Model
         return $transformed_vax_array;
     }
     public function goToPatientPage($id, $message = null){
-
+        $date_diff = 'Unable to calculate age. Invalid birthdate provided';
         $patient = self::whereId($id)->first();
         $visits = $patient->visits()->get();
         $vitals = $patient->vitals()->get();
@@ -61,7 +61,14 @@ class Patient extends Model
         $log = new ActivityLog();
         $log->patient_id = $patient->id;
         $log->save();
+        try{
+            if (Carbon::createFromFormat('Y-m-d', $patient->birthdate) !== false) {
+                $date_diff = Carbon::parse($patient->birthdate)->diff(Carbon::now())->format('%y years, %m months and %d days');
+            }
+        }catch(\Carbon\Exceptions\InvalidFormatException $e){
 
-        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals, 'success' => $message, 'vaccines' => self::transformVaccine($vaccines), 'lib_vaccines' => $lib_vaccines]);
+        }
+
+        return view('patient.patient')->with(['patient' => $patient, 'visits' => $visits, 'vitals' => $vitals, 'success' => $message, 'vaccines' => self::transformVaccine($vaccines), 'lib_vaccines' => $lib_vaccines, 'date_diff' => $date_diff]);
     }
 }

@@ -34,7 +34,18 @@
                                 <th class="col-3">Middle Name</th><td class="col-10"><input class="form-control" type="text" name="mname" value="{{Str::upper( $patient->mname ?? '' ) }}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Birthdate</th><td class="col-10"><input class="form-control" type="text" name="birthdate" value="{{$patient->birthdate ?? ''}}"></td>
+                                <th class="col-3">Birthdate</th>
+                                <td class="col-10">
+
+                                    <div class="row">
+                                        <div class="col-6"><input class="form-control" type="text" name="birthdate" value="{{$patient->birthdate ?? ''}}"></div>
+
+                                        <div class="col-6">{{ $date_diff ?? '' }}</div>
+
+
+                                    </div>
+
+                                </td>
                             </tr>
                             <tr>
                                 <th class="col-3">Address</th><td class="col-10"><input class="form-control" type="text" name="address" value="{{$patient->address ?? ''}}"></td>
