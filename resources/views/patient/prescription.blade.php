@@ -8,8 +8,7 @@
 <script>
  var src = {
     @foreach ($drugs as $drug)
-
-        "{{$drug->drug_name}}": 1,
+"{{$drug->drug_name}}": 1,
     @endforeach
 }
 

@@ -48,6 +48,12 @@
                                     <tr>
                                         <th class="col-2">Address</th><td class="col-10">{{Str::upper($patient->address)}}</td>
                                     </tr>
+                                    <tr>
+                                        <th class="col-2">Mother's Name</th><td class="col-10">{{Str::upper($patient->mothers_name)}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="col-2">Father's Name</th><td class="col-10">{{Str::upper($patient->fathers_name)}}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

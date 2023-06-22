@@ -56,6 +56,12 @@
                                 <label for="muac" class="col-form-label">Mid Upper Arm Circumference</label>
                                 <input type="text" class="form-control" id="muac" name="muac" value="{{$v->muac }}">
                             </div>
+
+                            <div class="col-6">
+                                <label for="save" class="row col-form-label">&nbsp;</label>
+                                <button class="btn btn-success float-right" id="save"><i class="fa fa-save"></i></button>
+                                <button class="btn btn-danger float-right mx-2" id="save"><i class="fa fa-trash"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>

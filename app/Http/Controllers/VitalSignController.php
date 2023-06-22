@@ -39,7 +39,7 @@ class VitalSignController extends Controller
     public function store(Request $request)
     {
         VitalSign::create($request->only((new VitalSign)->getFillable()));
-        return Patient::goToPatientPage($request->patient_id);
+        return Patient::goToPatientPage($request->patient_id, 'Vitals Recorded Succesfully');
     }
 
     /**
@@ -60,9 +60,10 @@ class VitalSignController extends Controller
      * @param  \App\Models\VitalSign  $vitalSign
      * @return \Illuminate\Http\Response
      */
-    public function edit(VitalSign $vitalSign)
+    public function edit(VitalSign $vitalSign, Request $request, $id)
     {
-        //
+        VitalSign::update($request->only((new VitalSign)->getFillable()))->whereId($id);
+        return Patient::goToPatientPage($request->patient_id, 'Vitals Updated Succesfully');
     }
 
     /**

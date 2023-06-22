@@ -54,7 +54,8 @@ class VisitsController extends Controller
         $patient_info = Patient::whereId($visit->patient_id)->first();
         $images = $patient_info->images()->get();
         $vitals = $patient_info->vitals()->get();
-        $drugs = LibDrug::groupBy("drug_name")->get();
+        $drugs = LibDrug::groupBy("drug_name")->get(['drug_name']);
+        // return $drugs;
         return view('patient.visit')->with(['visit' => $visit, 'patient' => $patient_info, 'images' => $images, 'vitals' => $vitals, 'drugs' => $drugs]);
     }
 
