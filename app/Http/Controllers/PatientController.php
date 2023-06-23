@@ -14,7 +14,7 @@ class PatientController extends Controller
      */
     public function index(Request $request)
     {
-        $fields = [ 'lname', 'mname', 'fname', 'address'];
+        $fields = [ 'lname', 'mname', 'fname', 'address', 'mothers_name', 'fathers_name'];
 
         $filter = $request->input('search');
         $filter = str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $filter);
