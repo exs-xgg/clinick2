@@ -62,8 +62,10 @@ class Patient extends Model
         $log->patient_id = $patient->id;
         $log->save();
         try{
-            if (Carbon::createFromFormat('Y-m-d', $patient->birthdate) !== false) {
+            if ((Carbon::createFromFormat('m/d/Y', $patient->birthdate) !== false)) {
                 $date_diff = Carbon::parse($patient->birthdate)->diff(Carbon::now())->format('%y years, %m months and %d days');
+            }else{
+                $date_diff = "-";
             }
         }catch(\Carbon\Exceptions\InvalidFormatException $e){
 
