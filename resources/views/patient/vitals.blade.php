@@ -64,7 +64,7 @@
                             <div class="col-6">
                                 <label for="save" class="row col-form-label">&nbsp;</label>
                                 <button type="submit" class="btn btn-success float-right" id="save"><i class="fa fa-save"></i></button>
-                                <button class="btn btn-danger float-right mx-2" id="delete"><i class="fa fa-trash"></i></button>
+                                {{-- <a class="btn btn-danger float-right mx-2" id="delete"><i class="fa fa-trash"></i></a> --}}
                             </div>
                         </div>
                     </div>
