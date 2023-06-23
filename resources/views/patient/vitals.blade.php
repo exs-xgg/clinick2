@@ -9,6 +9,10 @@
             <li class="list-group-item" data-toggle="collapse" href="#collapseVitalsId{{$v->id}}" role="button" aria-expanded="false" aria-controls="collapseVitalsId{{$v->id}}">{{Carbon\Carbon::parse( $v->created_at)->format("m-d-Y H:i a")}}, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
 
             <div class="collapse" id="collapseVitalsId{{$v->id}}">
+                <form autocomplete="off" action="/vitalsigns/{{$v->id}}" method="post">
+                @csrf
+                @method('patch')
+                <input type="hidden" name="patient_id" value="{{$v->patient_id}}">
                 <div class="card card-body">
                     <div class="form-group">
                         <div class="row">
@@ -59,12 +63,13 @@
 
                             <div class="col-6">
                                 <label for="save" class="row col-form-label">&nbsp;</label>
-                                <button class="btn btn-success float-right" id="save"><i class="fa fa-save"></i></button>
-                                <button class="btn btn-danger float-right mx-2" id="save"><i class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-success float-right" id="save"><i class="fa fa-save"></i></button>
+                                <button class="btn btn-danger float-right mx-2" id="delete"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
             @endforeach
 
