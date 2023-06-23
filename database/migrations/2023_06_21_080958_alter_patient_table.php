@@ -27,6 +27,10 @@ class AlterPatientTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('patients', function (Blueprint $table) {
+            $table->dropColumn('mothers_name')->change();
+            $table->dropColumn('fathers_name')->change();
+            $table->dropColumn('emergency_contact_no')->change();
+        });
     }
 }
