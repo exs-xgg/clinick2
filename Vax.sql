@@ -15,3 +15,4 @@ INSERT INTO `lib_vaccines` (`vax_id`, `vax_name`) VALUES (NULL, 'RAB1'), (NULL, 
 INSERT INTO `lib_vaccines` (`vax_id`, `vax_name`) VALUES (NULL, 'HPV1'), (NULL, 'HPV2'), (NULL, 'HPV3'), (NULL, 'HPV4'), (NULL, 'HPV5');
 INSERT INTO `lib_vaccines` (`vax_id`, `vax_name`) VALUES (NULL, 'TDAP1'), (NULL, 'TDAP2'), (NULL, 'TDAP3'), (NULL, 'TDAP4'), (NULL, 'TDAP5');
 INSERT INTO `lib_vaccines` (`vax_id`, `vax_name`) VALUES (NULL, 'DEN1'), (NULL, 'DEN2'), (NULL, 'DEN3'), (NULL, 'DEN4'), (NULL, 'DEN5');
+INSERT INTO `lib_vaccines` (`vax_id`, `vax_name`) VALUES (NULL, 'DPT1'), (NULL, 'DPT2'), (NULL, 'DPT3'), (NULL, 'DPT4'), (NULL, 'DPT5');

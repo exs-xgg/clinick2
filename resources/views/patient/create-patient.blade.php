@@ -31,7 +31,7 @@
 
                 <div class="row col-12">
                     <label for="birthdate" class="col-sm-2 col-form-label">Birthdate</label>
-                    <input class="form-control col-sm-10 mb-3" type="text" name="birthdate" id="birthdate" placeholder="mm/dd/yyyy">
+                    <input class="form-control col-sm-10 mb-3" type="date" name="birthdate" id="birthdate" placeholder="mm/dd/yyyy">
                 </div>
 {{--
                 <div class="row col-12">
