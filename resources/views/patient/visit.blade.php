@@ -25,34 +25,34 @@
                             <div class="card-body collapse " id="ptInfo">
                                 <table class="table table-sm">
                                     <tr>
-                                        <th class="col-2">Name</th><td class="col-10"><a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a></td>
+                                        <th class="">Name</th><td class=""><a href="/patient/{{$patient->id}}">{{Str::upper($patient->lname . ', ' . $patient->fname . ( $patient->mname ? ' ' . $patient->mname : '') ) }}</a></td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Birthdate</th><td class="col-10">{{$patient->birthdate ?? ''}} {{ $patient->age ? '(' . $patient->age . ')' : ''}}</td>
+                                        <th class="">Birthdate</th><td class="">{{$patient->birthdate ?? ''}} {{ $patient->age ? '(' . $patient->age . ')' : ''}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Gender</th><td class="col-10">{{Str::upper($patient->sex)}}</td>
+                                        <th class="">Gender</th><td class="">{{Str::upper($patient->sex)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Contact Number</th><td class="col-10">{{Str::upper($patient->contact_no)}}</td>
+                                        <th class="">Contact Number</th><td class="">{{Str::upper($patient->contact_no)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Civil Status</th><td class="col-10">{{Str::upper($patient->civil_stat)}}</td>
+                                        <th class="">Civil Status</th><td class="">{{Str::upper($patient->civil_stat)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Occupation</th><td class="col-10">{{Str::upper($patient->occupation)}}</td>
+                                        <th class="">Occupation</th><td class="">{{Str::upper($patient->occupation)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">HMO</th><td class="col-10">{{Str::upper($patient->hmo)}}</td>
+                                        <th class="">HMO</th><td class="">{{Str::upper($patient->hmo)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Address</th><td class="col-10">{{Str::upper($patient->address)}}</td>
+                                        <th class="">Address</th><td class="">{{Str::upper($patient->address)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Mother's Name</th><td class="col-10">{{Str::upper($patient->mothers_name)}}</td>
+                                        <th class="">Mother's Name</th><td class="">{{Str::upper($patient->mothers_name)}}</td>
                                     </tr>
                                     <tr>
-                                        <th class="col-2">Father's Name</th><td class="col-10">{{Str::upper($patient->fathers_name)}}</td>
+                                        <th class="">Father's Name</th><td class="">{{Str::upper($patient->fathers_name)}}</td>
                                     </tr>
                                 </table>
                             </div>
