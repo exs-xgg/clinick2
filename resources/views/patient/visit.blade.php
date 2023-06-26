@@ -81,7 +81,7 @@
                     <div class="col-md-12 col-sm-12 mb-2">
                         <div class="card bg-info">
                             <div class="card-header" data-toggle="collapse" aria-expanded="false" aria-controls="collapseSymptoms" href="#collapseSymptoms">
-                                Symptoms
+                                Symptoms/PE
                             </div>
                             <div class="card-body collapse multi-collapse" id="collapseSymptoms">
                                 <textarea class="form-control col-12" name="symptoms" id="symptoms" cols="30" rows="10">{{$visit->symptoms}}</textarea>
