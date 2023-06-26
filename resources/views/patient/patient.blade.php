@@ -25,17 +25,17 @@
                             @method('patch')
                             <input type="hidden" name="id" value="{{$patient->id}}">
                             <tr>
-                                <th class="col-3">Last Name</th><td class="col-10"><input class="form-control" type="text" name="lname" value="{{Str::upper($patient->lname) }}" required></td>
+                                <th class="">Last Name</th><td class=""><input class="form-control" type="text" name="lname" value="{{Str::upper($patient->lname) }}" required></td>
                             </tr>
                             <tr>
-                                <th class="col-3">First Name</th><td class="col-10"><input class="form-control" type="text" name="fname" value="{{Str::upper($patient->fname) }}" required></td>
+                                <th class="">First Name</th><td class=""><input class="form-control" type="text" name="fname" value="{{Str::upper($patient->fname) }}" required></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Middle Name</th><td class="col-10"><input class="form-control" type="text" name="mname" value="{{Str::upper( $patient->mname ?? '' ) }}"></td>
+                                <th class="">Middle Name</th><td class=""><input class="form-control" type="text" name="mname" value="{{Str::upper( $patient->mname ?? '' ) }}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Birthdate</th>
-                                <td class="col-10">
+                                <th class="">Birthdate</th>
+                                <td class="">
 
                                     <div class="row">
                                         <div class="col-6"><input class="form-control" type="text" name="birthdate" value="{{$patient->birthdate ?? ''}}"></div>
@@ -48,10 +48,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th class="col-3">Address</th><td class="col-10"><input class="form-control" type="text" name="address" value="{{$patient->address ?? ''}}"></td>
+                                <th class="">Address</th><td class=""><input class="form-control" type="text" name="address" value="{{$patient->address ?? ''}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Gender</th><td class="col-10">
+                                <th class="">Gender</th><td class="">
                                     <select name="sex" id="sex" class=" col-sm-4 mb-3">
                                         <option value="na" {{(Str::lower($patient->sex) == 'na' ? 'selected' : '')}}>NA</option>
                                         <option value="m" {{(Str::lower($patient->sex) == 'm' ? 'selected' : '')}}>Male</option>
@@ -59,19 +59,19 @@
                                     </select></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Patient's Contact Number</th><td class="col-10"><input class="form-control" type="text" name="contact_no" value="{{Str::upper($patient->contact_no)}}"></td>
+                                <th class="">Patient's Contact Number</th><td class=""><input class="form-control" type="text" name="contact_no" value="{{Str::upper($patient->contact_no)}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Mother's Name</th><td class="col-10"><input class="form-control" type="text" name="mothers_name" value="{{Str::upper($patient->mothers_name)}}"></td>
+                                <th class="">Mother's Name</th><td class=""><input class="form-control" type="text" name="mothers_name" value="{{Str::upper($patient->mothers_name)}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Father's Name</th><td class="col-10"><input class="form-control" type="text" name="fathers_name" value="{{Str::upper($patient->fathers_name)}}"></td>
+                                <th class="">Father's Name</th><td class=""><input class="form-control" type="text" name="fathers_name" value="{{Str::upper($patient->fathers_name)}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Emergency Contact Number</th><td class="col-10"><input class="form-control" type="text" name="emergency_contact_no" value="{{Str::upper($patient->emergency_contact_no)}}"></td>
+                                <th class="">Emergency Contact Number</th><td class=""><input class="form-control" type="text" name="emergency_contact_no" value="{{Str::upper($patient->emergency_contact_no)}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">Civil Status</th><td class="col-10">
+                                <th class="">Civil Status</th><td class="">
 
                                     <select name="civil_stat" id="civil_stat" class=" col-sm-4 mb-3">
                                         <option value="S"  {{($patient->civil_stat == 'S' ? 'selected' : '')}}>Single</option>
@@ -82,10 +82,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th class="col-3">Occupation</th><td class="col-10"><input class="form-control" type="text" name="occupation" value="{{$patient->occupation}}"></td>
+                                <th class="">Occupation</th><td class=""><input class="form-control" type="text" name="occupation" value="{{$patient->occupation}}"></td>
                             </tr>
                             <tr>
-                                <th class="col-3">HMO</th><td class="col-10"><input class="form-control" type="text" name="hmo" value="{{$patient->hmo}}"></td>
+                                <th class="">HMO</th><td class=""><input class="form-control" type="text" name="hmo" value="{{$patient->hmo}}"></td>
                             </tr>
                         </table>
                         <button type="submit" class="btn btn-success float-right">Update Patient Information</button>
