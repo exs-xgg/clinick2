@@ -15,7 +15,7 @@
     @endif
         <div class="card border-success">
             <div class="card-header">
-                Patient Record #{{$visit->id}} <span class="float-right"></span>
+                Patient Record #{{$visit->id}} <br> Consult Date: <b>{{Carbon\Carbon::parse($visit->created_at)->toDayDateTimeString()}}</b> - ({{Carbon\Carbon::parse($visit->created_at)->diffForHumans()}})<span class="float-right"></span>
             </div>
             <div class="card-body">
                 <div class="row mb-3">
