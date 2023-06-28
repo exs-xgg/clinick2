@@ -135,7 +135,7 @@
                                     <div class="row">
                                         @foreach ($images as $i)
                                         <div class="card col-md-5 col-sm-12 m-4">
-                                            <div class="card-header">{{$i->created_at}}</div>
+                                            <div class="card-header">{{Carbon\Carbon::parse($i->created_at)->toDayDateTimeString()}}</div>
                                             <div class="card-body">
                                                 <a target="blank" href="{{$i->asset_path}}"><img class="img-visit" src="{{$i->asset_path}}" alt="{{$i->created_at}}" style=" max-width: 100%;  max-heigh: 30vh; "></a>
                                             </div>
