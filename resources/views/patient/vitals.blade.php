@@ -9,11 +9,12 @@
             <li class="list-group-item" data-toggle="collapse" href="#collapseVitalsId{{$v->id}}" role="button" aria-expanded="false" aria-controls="collapseVitalsId{{$v->id}}">{{Carbon\Carbon::parse( $v->created_at)->format("m-d-Y H:i a")}}, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
 
             <div class="collapse" id="collapseVitalsId{{$v->id}}">
-                <form autocomplete="off" action="/vitalsigns/{{$v->id}}" method="post">
-                @csrf
-                @method('patch')
-                <input type="hidden" name="patient_id" value="{{$v->patient_id}}">
+
                 <div class="card card-body">
+                    <form autocomplete="off" action="/vitalsigns/{{$v->id}}" method="post">
+                        @csrf
+                        @method('patch')
+                        <input type="hidden" name="patient_id" value="{{$v->patient_id}}">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -64,12 +65,22 @@
                             <div class="col-6">
                                 <label for="save" class="row col-form-label">&nbsp;</label>
                                 <button type="submit" class="btn btn-success float-right" id="save"><i class="fa fa-save"></i></button>
-                                {{-- <a class="btn btn-danger float-right mx-2" id="delete"><i class="fa fa-trash"></i></a> --}}
+                                <a class="btn btn-danger float-right mx-2" data-toggle="collapse" href="#deleteVitalsId{{$v->id}}" role="button"  id="delete"  aria-controls="deleteVitalsId{{$v->id}}"><i class="fa fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
+                    </form>
+                    <div class="collapse" id="deleteVitalsId{{$v->id}}">
+                        <div class="card card-body">
+
+                            <div class="row my-0">
+                                <a class="btn btn-danger float-right mx-2" onclick="delVitals({{$v->id}})"><i class="fa fa-trash"></i> Delete Vital Signs Record</a> <a class="btn float-right mx-2" data-toggle="collapse" href="#deleteVitalsId{{$v->id}}" role="button" aria-controls="deleteVitalsId{{$v->id}}">Cancel</a>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-                </form>
+
             </div>
             @endforeach
 
@@ -152,3 +163,19 @@
         </div>
     </div>
 </div>
+@push('scripts')
+
+<script>
+    function delVitals(e){
+        $.ajax({
+            url: '/vitalsigns/' + e,
+            method: 'delete',
+            success: function (result){
+                location.reload();
+            }
+        })
+    }
+</script>
+
+@endpush
+

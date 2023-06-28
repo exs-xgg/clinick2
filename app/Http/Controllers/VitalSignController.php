@@ -89,9 +89,9 @@ class VitalSignController extends Controller
     {
 
 
-        $vital_sign = VitalSign::whereId($id)->first();
-        $patient = Patient::whereId($vital_sign->patient_id)->first();
+        $vital_sign = VitalSign::whereId($id)->delete();
+        // $patient = Patient::whereId($vital_sign->patient_id)->first();
 
-        return Patient::goToPatientPage($vital_sign->patient_id);
+        return $vital_sign;
     }
 }
