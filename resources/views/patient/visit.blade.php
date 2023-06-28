@@ -70,10 +70,10 @@
                     <input type="hidden" name="id" value="{{$visit->id}}">
                     <div class="col-md-12 col-sm-12 mb-2">
                         <div class="card bg-success">
-                            <div class="card-header text-white" data-toggle="collapse" aria-expanded="false" aria-controls="collapseHx" href="#collapseHx">
+                            <div class="card-header text-white" data-toggle="collapse" aria-expanded="true" aria-controls="collapseHx" href="#collapseHx">
                                 HX
                             </div>
-                            <div class="card-body collapse multi-collapse" id="collapseHx">
+                            <div class="card-body collapse show multi-collapse" id="collapseHx">
                                 <textarea class="form-control col-12" name="history" id="" cols="30" rows="10">{{$visit->history}}</textarea>
                             </div>
                         </div>

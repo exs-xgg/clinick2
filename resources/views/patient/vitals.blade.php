@@ -73,7 +73,7 @@
                     <div class="collapse" id="deleteVitalsId{{$v->id}}">
                         <div class="card card-body">
 
-                            <div class="row my-0">
+                            <div class="row my-0 mx-auto">
                                 <a class="btn btn-danger float-right mx-2" onclick="delVitals({{$v->id}})"><i class="fa fa-trash"></i> Delete Vital Signs Record</a> <a class="btn float-right mx-2" data-toggle="collapse" href="#deleteVitalsId{{$v->id}}" role="button" aria-controls="deleteVitalsId{{$v->id}}">Cancel</a>
                             </div>
 
