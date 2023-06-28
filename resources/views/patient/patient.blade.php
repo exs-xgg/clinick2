@@ -134,7 +134,7 @@
                                         <textarea class="form-control" id="history" name="history" maxlength="250"></textarea>
                                         </div>
                                         <div class="form-group">
-                                        <label for="symptoms" class="col-form-label">Symptoms</label>
+                                        <label for="symptoms" class="col-form-label">Symptoms/PE</label>
                                         <textarea class="form-control" id="symptoms" name="symptoms" maxlength="250"></textarea>
                                         </div>
                                         <div class="form-group">
@@ -142,7 +142,7 @@
                                         <textarea class="form-control" id="diagnosis" name="diagnosis" maxlength="250"></textarea>
                                         </div>
                                         <div class="form-group">
-                                        <label for="prescription" class="col-form-label">Prescription</label>
+                                        <label for="prescription" class="col-form-label">Prescription/THA</label>
                                         <textarea class="form-control" id="prescription" name="prescription" maxlength="250"></textarea>
                                         </div>
                                         <button type="submit" class="btn btn-success">Save Record</button>
