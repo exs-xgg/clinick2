@@ -18,7 +18,7 @@
         <div class="card-header"><i class="fa fa-user mr-2"></i> Patient Information</div>
         <div class="card-body">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <form autocomplete="off" action="/patient/{{$patient->id}}" method="post">
                         <table class="table">
                             @csrf
@@ -99,7 +99,12 @@
                         <div class="card-body">
                             <ul class="list-group">
                                 @foreach ($visits as $v)
-                                <li class="list-group-item"><a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->format("m-d-Y H:i a")}}</a>, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}</li>
+                                <li class="list-group-item">
+                                    <a href="/visit/{{$v->id}}">{{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->toDayDateTimeString()}}</a>, {{Carbon\Carbon::parse($v->alias_created_at ?? $v->created_at)->diffForHumans()}}
+                                    <br>
+                                    <span class="ml-3 small">{{$v->history}}</span>
+
+                                </li>
                                 @endforeach
                             </ul>
                         </div>
