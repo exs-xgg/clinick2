@@ -322,7 +322,11 @@
         }
         fd.append('patient_id', {{$patient->id}});
         console.log(fd);
-        $("#uploadManual").hide();
+        // $("#uploadManual").hide();
+
+        $("#uploadManual").html('Uploading...');
+        $("#uploadManual").prop('disabled', 'true')
+
         fetch('/image', {
                 method:"POST",
                 headers:{
@@ -333,10 +337,19 @@
                 credentials: "same-origin",
                 body:fd
             }).then((response) => {
+                if(response.status == 500 || (!response)){
+                    alert('Uploading failed, please check internet connection');
+                    $("#uploadManual").html('Upload');
+                    $("#uploadManual").prop('disabled', '')
+                    return 0;
+                }
                 $("#fileUpload").val('');
                 location.reload();
-            })
-                // .then(response => console.log(response.text()))
+            }).catch(err => {
+                alert('Uploading failed, please check internet connection');
+                    $("#uploadManual").html('Upload');
+                    $("#uploadManual").prop('disabled', '')
+            });
       }
 
       // Set up our event listener to run the startup process
