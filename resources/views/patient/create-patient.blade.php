@@ -67,7 +67,7 @@
 
 
                 <div class="row col-12">
-                    <label for="fatherrs_name" class="col-sm-2 col-form-label">Father's Name</label>
+                    <label for="fathers_name" class="col-sm-2 col-form-label">Father's Name</label>
                     <input class="form-control col-sm-10 mb-3" type="text" name="fatherrs_name" id="fatherrs_name">
                 </div>
 
