@@ -1,0 +1,9 @@
+{
+    "extends":"../tsconfig.json",
+    "include": ["e2e/**/*.ts", "support/**/*.ts"],
+    "compilerOptions": {
+        "target": "ES2019",
+        "types": ["cypress"]
+    },
+
+}
