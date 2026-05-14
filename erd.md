@@ -138,7 +138,7 @@ erDiagram
 | Column            | Type              | Constraints                      | Description                                    |
 |-------------------|-------------------|----------------------------------|------------------------------------------------|
 | `id`              | `BIGINT UNSIGNED` | PK, Auto Increment               | Unique visit identifier                        |
-| `patient_id`      | `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id`     | Reference to the patient                       |
+| `patient_id`      | `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id` ON DELETE CASCADE | Reference to the patient                       |
 | `history`         | `VARCHAR(255)`    | NULLABLE                         | Patient history notes                          |
 | `symptoms`        | `VARCHAR(255)`    | NULLABLE                         | Reported symptoms                              |
 | `diagnosis`       | `LONGTEXT`        | NULLABLE                         | Doctor's diagnosis (supports long text)        |
@@ -152,7 +152,7 @@ erDiagram
 | Column       | Type              | Constraints                      | Description                                         |
 |-------------|-------------------|----------------------------------|-----------------------------------------------------|
 | `id`        | `BIGINT UNSIGNED` | PK, Auto Increment               | Unique image identifier                             |
-| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id`     | Reference to the patient                            |
+| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id` ON DELETE CASCADE | Reference to the patient                            |
 | `asset_path`| `LONGTEXT`        | NOT NULL                         | File path or base64-encoded image data              |
 | `created_at`| `TIMESTAMP`       | NULLABLE                         | Record creation timestamp                           |
 | `updated_at`| `TIMESTAMP`       | NULLABLE                         | Record last update timestamp                        |
@@ -165,8 +165,8 @@ erDiagram
 | Column       | Type              | Constraints                      | Description                       |
 |-------------|-------------------|----------------------------------|-----------------------------------|
 | `id`        | `BIGINT UNSIGNED` | PK, Auto Increment               | Unique vital sign record ID       |
-| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id`     | Reference to the patient          |
-| `visit_id`  | `BIGINT UNSIGNED` | NOT NULL, FK → `visits.id`       | Reference to the visit            |
+| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id` ON DELETE CASCADE | Reference to the patient          |
+| `visit_id`  | `BIGINT UNSIGNED` | NOT NULL, FK → `visits.id` ON DELETE CASCADE   | Reference to the visit            |
 | `temp`      | `VARCHAR(4)`      | NULLABLE                         | Body temperature                  |
 | `weight`    | `VARCHAR(4)`      | NULLABLE                         | Body weight                       |
 | `height`    | `VARCHAR(4)`      | NULLABLE                         | Height                            |
@@ -181,7 +181,7 @@ erDiagram
 | Column       | Type              | Constraints                      | Description                                  |
 |-------------|-------------------|----------------------------------|----------------------------------------------|
 | `id`        | `BIGINT UNSIGNED` | PK, Auto Increment               | Unique activity log ID                       |
-| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id`     | Reference to the patient being viewed        |
+| `patient_id`| `BIGINT UNSIGNED` | NOT NULL, FK → `patients.id` ON DELETE CASCADE | Reference to the patient being viewed        |
 | `created_at`| `TIMESTAMP`       | NULLABLE                         | When the patient record was accessed         |
 | `updated_at`| `TIMESTAMP`       | NULLABLE                         | Record last update timestamp                 |
 
@@ -199,18 +199,19 @@ erDiagram
 | 6 | `2021_07_18_121607_create_vital_signs_table`        | Creates `vital_signs` table with FKs to `patients` and `visits` |
 | 7 | `2021_07_24_225228_alter_images`                    | Alters `images.asset_path` from `VARCHAR` to `LONGTEXT` |
 | 8 | `2021_09_08_112600_insert_user`                     | Seeds a default user into the `users` table          |
+| 9 | `2026_05_14_000000_add_cascade_deletes_to_foreign_keys` | Adds `ON DELETE CASCADE` to all foreign keys     |
 
 ---
 
 ## Indexes & Constraints
 
-| Table           | Constraint Type | Column(s)      | References         |
-|----------------|-----------------|----------------|--------------------|
-| `visits`       | Foreign Key     | `patient_id`   | `patients(id)`     |
-| `images`       | Foreign Key     | `patient_id`   | `patients(id)`     |
-| `vital_signs`  | Foreign Key     | `patient_id`   | `patients(id)`     |
-| `vital_signs`  | Foreign Key     | `visit_id`     | `visits(id)`       |
-| `activity_logs`| Foreign Key     | `patient_id`   | `patients(id)`     |
+| Table           | Constraint Type | Column(s)      | References         | On Delete   |
+|----------------|-----------------|----------------|--------------------|-----------|
+| `visits`       | Foreign Key     | `patient_id`   | `patients(id)`     | CASCADE   |
+| `images`       | Foreign Key     | `patient_id`   | `patients(id)`     | CASCADE   |
+| `vital_signs`  | Foreign Key     | `patient_id`   | `patients(id)`     | CASCADE   |
+| `vital_signs`  | Foreign Key     | `visit_id`     | `visits(id)`       | CASCADE   |
+| `activity_logs`| Foreign Key     | `patient_id`   | `patients(id)`     | CASCADE   |
 
-> [!IMPORTANT]
-> No `ON DELETE CASCADE` is defined on any foreign key. Deleting a patient without first removing related visits, images, vital signs, and activity logs will result in a foreign key constraint violation.
+> [!NOTE]
+> All foreign keys use `ON DELETE CASCADE`. Deleting a patient will automatically remove all related visits, images, vital signs, and activity logs.
